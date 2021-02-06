@@ -9,7 +9,7 @@
 
     <div class="container-fluid mt--7">
         <div class="row">
-            <div class="col-xl-4 order-xl-2 mb-5 mb-xl-0">
+            {{-- <div class="col-xl-5 order-xl-2 mb-5 mb-xl-0">
                 <div class="card card-profile shadow">
                     <div class="row justify-content-center">
                         <div class="col-lg-3 order-lg-2">
@@ -31,16 +31,20 @@
                             <div class="col">
                                 <div class="card-profile-stats d-flex justify-content-center mt-md-5">
                                     <div>
-                                        <span class="heading">22</span>
-                                        <span class="description">{{ __('Friends') }}</span>
+                                        <span class="heading">{{$last_suhu_user->suhu}}</span>
+                                        <span class="description">{{ __('Suhu') }}</span>
                                     </div>
                                     <div>
-                                        <span class="heading">10</span>
-                                        <span class="description">{{ __('Photos') }}</span>
+                                        <span class="heading">{{$last_detak_user->bpm}}</span>
+                                        <span class="description">{{ __('Detak Jantung') }}</span>
                                     </div>
                                     <div>
-                                        <span class="heading">89</span>
-                                        <span class="description">{{ __('Comments') }}</span>
+                                        <span class="heading">{{$last_detak_user->oksigen}}</span>
+                                        <span class="description">{{ __('Oksigen') }}</span>
+                                    </div>
+                                    <div>
+                                        <span class="heading">{{$last_tekanan_user->sistole}}/{{$last_tekanan_user->diastole}}</span>
+                                        <span class="description">{{ __('Tekanan Darah') }}</span>
                                     </div>
                                 </div>
                             </div>
@@ -52,19 +56,11 @@
                             <div class="h5 font-weight-300">
                                 <i class="ni location_pin mr-2"></i>{{ __('Bucharest, Romania') }}
                             </div>
-                            <div class="h5 mt-4">
-                                <i class="ni business_briefcase-24 mr-2"></i>{{ __('Solution Manager - Creative Tim Officer') }}
-                            </div>
-                            <div>
-                                <i class="ni education_hat mr-2"></i>{{ __('University of Computer Science') }}
-                            </div>
-                            <hr class="my-4" />
-                            <p>{{ __('Ryan — the name taken by Melbourne-raised, Brooklyn-based Nick Murphy — writes, performs and records all of his own music.') }}</p>
-                            <a href="#">{{ __('Show more') }}</a>
+
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> --}}
             <div class="col-xl-8 order-xl-1">
                 <div class="card bg-secondary shadow">
                     <div class="card-header bg-white border-0">
@@ -90,28 +86,68 @@
 
 
                             <div class="pl-lg-4">
-                                <div class="form-group{{ $errors->has('name') ? ' has-danger' : '' }}">
-                                    <label class="form-control-label" for="input-name">{{ __('Name') }}</label>
-                                    <input type="text" name="name" id="input-name" class="form-control form-control-alternative{{ $errors->has('name') ? ' is-invalid' : '' }}" placeholder="{{ __('Name') }}" value="{{ old('name', auth()->user()->name) }}" required autofocus>
+                                <div class="row">
+                                    <div class="col-lg-6">
+                                        <div class="form-group{{ $errors->has('name') ? ' has-danger' : '' }}">
+                                            <label class="form-control-label" for="input-name">{{ __('Name') }}</label>
+                                            <input type="text" name="name" id="input-name" class="form-control form-control-alternative{{ $errors->has('name') ? ' is-invalid' : '' }}" placeholder="{{ __('Name') }}" value="{{ old('name', auth()->user()->name) }}" required autofocus>
 
-                                    @if ($errors->has('name'))
+                                            @if ($errors->has('name'))
+                                                <span class="invalid-feedback" role="alert">
+                                                    <strong>{{ $errors->first('name') }}</strong>
+                                                </span>
+                                            @endif
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <div class="form-group{{ $errors->has('email') ? ' has-danger' : '' }}">
+                                            <label class="form-control-label" for="input-email">{{ __('Email') }}</label>
+                                            <input type="email" name="email" id="input-email" class="form-control form-control-alternative{{ $errors->has('email') ? ' is-invalid' : '' }}" placeholder="{{ __('Email') }}" value="{{ old('email', auth()->user()->email) }}" required>
+
+                                            @if ($errors->has('email'))
+                                                <span class="invalid-feedback" role="alert">
+                                                    <strong>{{ $errors->first('email') }}</strong>
+                                                </span>
+                                            @endif
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group{{ $errors->has('alamat') ? ' has-danger' : '' }}">
+                                    <label class="form-control-label" for="input-alamat">{{ __('Alamat') }}</label>
+                                    <input type="text" name="alamat" id="input-alamat" class="form-control form-control-alternative{{ $errors->has('alamat') ? ' is-invalid' : '' }}" placeholder="{{ __('alamat') }}" value="{{ old('alamat', auth()->user()->alamat) }}" required>
+
+                                    @if ($errors->has('alamat'))
                                         <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $errors->first('name') }}</strong>
+                                            <strong>{{ $errors->first('alamat') }}</strong>
                                         </span>
                                     @endif
                                 </div>
-                                <div class="form-group{{ $errors->has('email') ? ' has-danger' : '' }}">
-                                    <label class="form-control-label" for="input-email">{{ __('Email') }}</label>
-                                    <input type="email" name="email" id="input-email" class="form-control form-control-alternative{{ $errors->has('email') ? ' is-invalid' : '' }}" placeholder="{{ __('Email') }}" value="{{ old('email', auth()->user()->email) }}" required>
+                                <div class="row">
+                                    <div class="col-lg-6">
+                                        <div class="form-group{{ $errors->has('no_telp') ? ' has-danger' : '' }}">
+                                            <label class="form-control-label" for="input-no_telp">{{ __('No. Telp') }}</label>
+                                            <input type="text" name="no_telp" id="input-no_telp" class="form-control form-control-alternative{{ $errors->has('no_telp') ? ' is-invalid' : '' }}" placeholder="{{ __('No. Telp') }}" value="{{ old('no_telp', auth()->user()->no_telp) }}" required autofocus>
 
-                                    @if ($errors->has('email'))
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $errors->first('email') }}</strong>
-                                        </span>
-                                    @endif
+                                            @if ($errors->has('no_telp'))
+                                                <span class="invalid-feedback" role="alert">
+                                                    <strong>{{ $errors->first('no_telp') }}</strong>
+                                                </span>
+                                            @endif
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <div class="form-group{{ $errors->has('tanggal_lahir') ? ' has-danger' : '' }}">
+                                            <label class="form-control-label" for="input-tanggal_lahir">{{ __('Tanggal Lahir') }}</label>
+                                            <input type="date" name="tanggal_lahir" id="input-tanggal_lahir" class="form-control form-control-alternative{{ $errors->has('tanggal_lahir') ? ' is-invalid' : '' }}" placeholder="{{ __('Tanggal_lahir') }}" value="{{ old('tanggal_lahir', auth()->user()->tanggal_lahir) }}" required>
+
+                                            @if ($errors->has('tanggal_lahir'))
+                                                <span class="invalid-feedback" role="alert">
+                                                    <strong>{{ $errors->first('tanggal_lahir') }}</strong>
+                                                </span>
+                                            @endif
+                                        </div>
+                                    </div>
                                 </div>
-
-
                                 <div class="text-center">
                                     <button type="submit" class="btn btn-success mt-4">{{ __('Save') }}</button>
                                 </div>

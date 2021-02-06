@@ -2,10 +2,10 @@
     <div class="card-header border-0">
         <div class="d-flex justify-content-between">
             <h3 class="mb-2 text-muted">Riwayat Suhu Tubuh</h3>
-            <button class="btn btn-default">
+            {{-- <a class="btn btn-default" href="{{route('export.suhu')}}">
                 <i class="fas fa-file-pdf text-white"></i>
-                 Export ke PDF 
-            </button>
+                 Export ke PDF
+            </a> --}}
         </div>
     </div>
     <!-- Light table -->
@@ -30,7 +30,7 @@
                     <td>Normal</td>
                 @endif
 
-                <td>{{$suhu->created_at->format("d-m-Y")}}</td>
+                <td>{{$suhu->created_at->isoFormat("d-M-Y - HH:mm")}}</td>
             </tr>
         @endforeach
         </tbody>

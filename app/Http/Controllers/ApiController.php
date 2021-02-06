@@ -29,7 +29,6 @@ class ApiController extends Controller
         $tekanan = new TekananDarah();
         $tekanan->sistole = $request->sistole;
         $tekanan->diastole = $request->diastole;
-        $tekanan->keterangan = 'normal';
         $tekanan->user_id = $request->user_id;
 
         $suhu->save();

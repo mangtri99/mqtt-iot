@@ -5,6 +5,7 @@ namespace App\Models;
 use App\Models\Suhu;
 use App\Models\Detak;
 use App\Models\TekananDarah;
+use Carbon\Carbon;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -22,9 +23,12 @@ class User extends Authenticatable
     protected $fillable = [
         'name',
         'email',
+        'alamat',
+        'no_telp',
         'password',
         'no_pasien',
-        'tanggal_lahir'
+        'tanggal_lahir',
+        'jenis_kelamin'
     ];
 
     /**
@@ -37,6 +41,8 @@ class User extends Authenticatable
         'remember_token',
     ];
 
+    // protected $with = ['detak', 'suhu', 'tekanan_darah'];
+
     /**
      * The attributes that should be cast to native types.
      *
@@ -46,18 +52,28 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+    public function getUsiaAttribute()
+    {
+        return Carbon::parse($this->attributes['tanggal_lahir'])->age;
+    }
+
+    public function getTglLahirAttribute()
+    {
+        return Carbon::parse($this->attributes['tanggal_lahir'])->format("d, M Y");
+    }
+
     public function detak()
     {
-        return $this->belongsTo(Detak::class);
+        return $this->hasMany(Detak::class)->orderBy('created_at', 'desc')->take(10);
     }
 
     public function suhu()
     {
-        return $this->belongsTo(Suhu::class);
+        return $this->hasMany(Suhu::class)->orderBy('created_at', 'desc')->take(10);
     }
 
     public function tekanan_darah()
     {
-        return $this->belongsTo(TekananDarah::class);
+        return $this->hasMany(TekananDarah::class)->orderBy('created_at', 'desc')->take(10);
     }
 }

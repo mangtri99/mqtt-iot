@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\ProfileRequest;
 use App\Http\Requests\PasswordRequest;
+use App\Models\Detak;
+use App\Models\Suhu;
+use App\Models\TekananDarah;
 use Illuminate\Support\Facades\Hash;
 
 class ProfileController extends Controller
@@ -15,7 +18,14 @@ class ProfileController extends Controller
      */
     public function edit()
     {
-        return view('profile.edit');
+        $data_suhu = Suhu::where('user_id', auth()->id())->latest()->first();
+        $data_detak = Detak::where('user_id', auth()->id())->latest()->first();
+        $data_tekanan = TekananDarah::where('user_id', auth()->id())->latest()->first();
+        return view('profile.edit', [
+            'last_suhu_user' => $data_suhu,
+            'last_detak_user' => $data_detak,
+            'last_tekanan_user' => $data_tekanan
+        ]);
     }
 
     /**

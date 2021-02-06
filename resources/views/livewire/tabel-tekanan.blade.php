@@ -14,8 +14,7 @@
         <thead class="thead-light">
         <tr>
             <th scope="col" class="sort" data-sort="name">No</th>
-            <th scope="col" class="sort" data-sort="budget">Sistole</th>
-            <th scope="col" class="sort" data-sort="status">Diastole</th>
+            <th scope="col" class="sort" data-sort="budget">Tekanan Darah</th>
             <th scope="col" class="sort" data-sort="status">Keterangan</th>
             <th scope="col" class="sort" data-sort="status">Tanggal Periksa</th>
         </tr>
@@ -24,8 +23,7 @@
         @foreach ($riwayat_tekanan as $tekanan)
             <tr>
                 <td>{{$loop->iteration}}</td>
-                <td>{{$tekanan->sistole}}</td>
-                <td>{{$tekanan->diastole}}</td>
+                <td>{{$tekanan->sistole}} / {{$tekanan->diastole}} mmHg</td>
                 @if ($tekanan->sistole > 120 && $tekanan->diastole > 80)
                     <td>Tekanan Darah Tinggi (Hipertensi)</td>
                 @elseif ( $tekanan->sistole < 90 && $tekanan->diastole < 60)
@@ -33,7 +31,7 @@
                 @else
                     <td>Tekanan Darah Normal</td>
                 @endif
-                <td>{{$tekanan->created_at->format("d-m-Y")}}</td>
+                <td>{{$tekanan->created_at->format("d-m-Y - H:i")}}</td>
             </tr>
         @endforeach
         </tbody>

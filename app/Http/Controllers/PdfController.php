@@ -2,32 +2,27 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Detak;
-use App\Models\Suhu;
 use App\Models\User;
+use App\Models\Suhu;
+use App\Models\Detak;
 use App\Models\TekananDarah;
+use Illuminate\Http\Request;
+use Barryvdh\DomPDF\Facade as PDF;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\DB;
 
-class HomeController extends Controller
+
+class PdfController extends Controller
 {
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
-    public function __construct()
+    public function exportSuhu()
     {
-        $this->middleware('auth');
-    }
+        $data_suhu = Suhu::latest()->limit(10)->get();
+        $data_detak = Detak::latest()->limit(10)->get();
+        $data_tekanan = TekananDarah::latest()->limit(10)->get();
 
-    /**
-     * Show the application dashboard.
-     *
-     * @return \Illuminate\View\View
-     */
-    public function index()
-    {
+        $user_login = Auth::id();
+        $data_rangkum = User::where('id', '=', $user_login)->with('detak', 'suhu', 'tekanan_darah')->get();
+
+        $user = auth()->user()->name;
         $suhu = Suhu::where('user_id', Auth::user()->id)
             ->latest()->first();
         $total_pengukuran = Suhu::count();
@@ -52,12 +47,12 @@ class HomeController extends Controller
         $tekanan_rendah = TekananDarah::orderBy('sistole', 'asc')->first();
         $tekanan_rata2_sistole = TekananDarah::avg('sistole');
         $tekanan_rata2_diastole = TekananDarah::avg('diastole');
-
-        // return $suhu;
-        return view('dashboard', [
-            'suhu' => $suhu,
-            'detak' => $detak,
-            'tekananDarah' => $tekanan,
+        // view()->share('data_suhu', $data_suhu);
+        $pdf = PDF::loadview('pdf.report', [
+            'data_rangkum' => $data_rangkum,
+            'data_suhu' => $data_suhu,
+            'data_detak' => $data_detak,
+            'data_tekanan' => $data_tekanan,
             'suhu_tinggi' => $suhu_tinggi,
             'suhu_rendah' => $suhu_rendah,
             'suhu_rata2' => $suhu_rata2,
@@ -73,47 +68,9 @@ class HomeController extends Controller
             'tekanan_rata2_diastole' => $tekanan_rata2_diastole,
             'total_pengukuran' => $total_pengukuran
         ]);
-    }
-    public function riwayat_suhu()
-    {
-        return view('riwayat.suhu');
-    }
-    public function riwayat_detak()
-    {
-        return view('riwayat.detak');
-    }
-    public function riwayat_tekanan()
-    {
-        return view('riwayat.tekanan-darah');
-    }
-
-    public function chart_detak()
-    {
-        // $query = DB::table('detaks')->orderBy('created_at', 'desc')->take(10);
-        // $ordered = $query->reorder()->get();
-        $data_detak = Detak::latest()->limit(10)->get();
-        // $urut_data = $data_detak->sortBy('bpm');
-        // dd($query);
-        return response()->json($data_detak);
-    }
-
-    public function chart_suhu()
-    {
-        $data_suhu = Suhu::latest()->limit(10)->get();
-
-        return response()->json($data_suhu);
-    }
-
-    public function chart_tensi()
-    {
-        $data_tensi = TekananDarah::latest()->limit(10)->get();
-        return response()->json($data_tensi);
-    }
-
-    public function test()
-    {
-        $user_login = Auth::id();
-        $data = User::where('id', '=', $user_login)->with('detak', 'suhu', 'tekanan_darah')->get();
-        return $data[0]->tekanan_darah[0]->sistole;
+        // $user_login = Auth::id();
+        // $data = User::where('id', '=', $user_login)->with('detak', 'suhu', 'tekanan_darah')->get();
+        // return $data[0]->tekanan_darah[0]->sistole;
+        return $pdf->download('Riwayat-' . $user . '.pdf');
     }
 }
