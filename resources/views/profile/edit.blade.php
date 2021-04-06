@@ -1,9 +1,10 @@
-@extends('layouts.app', ['title' => __('User Profile')])
+@extends('layouts.app', ['titlePage' => __('User Profile')])
 
 @section('content')
     @include('users.partials.header', [
         'title' => __('Hello') . ' '. auth()->user()->name,
-        'description' => __('This is your profile page. You can see the progress you\'ve made with your work and manage your projects or assigned tasks'),
+        'description' => __('"Kesehatan yang baik bukanlah sesuatu yang dapat kita beli. Namun, sesuatu yang dapat menjadi tabungan yang sangat berharga." '),
+        'description1' => __('- Anne Wilson Schaef'),
         'class' => 'col-lg-7'
     ])
 
@@ -87,6 +88,18 @@
 
                             <div class="pl-lg-4">
                                 <div class="row">
+
+                                    @if (auth()->user()->is_admin == 1)
+                                        <div></div>
+                                    @else
+                                        <div class="col-12">
+                                            <div class="form-group">
+                                                <label class="form-control-label" for="input-pasien">{{ __('No Pasien') }}</label>
+                                                <input type="text"  id="input-no_pasien" class="form-control form-control-alternative}" value="{{ auth()->user()->no_pasien }}" disabled>
+                                            </div>
+                                        </div>
+                                    @endif
+
                                     <div class="col-lg-6">
                                         <div class="form-group{{ $errors->has('name') ? ' has-danger' : '' }}">
                                             <label class="form-control-label" for="input-name">{{ __('Name') }}</label>
@@ -107,6 +120,41 @@
                                             @if ($errors->has('email'))
                                                 <span class="invalid-feedback" role="alert">
                                                     <strong>{{ $errors->first('email') }}</strong>
+                                                </span>
+                                            @endif
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-6">
+                                        <div class="form-group{{ $errors->has('nik') ? ' has-danger' : '' }}">
+                                            <label class="form-control-label" for="input-nik">{{ __('NIK') }}</label>
+                                            <input type="text" name="nik" id="input-nik" class="form-control form-control-alternative{{ $errors->has('nik') ? ' is-invalid' : '' }}" placeholder="{{ __('NIK') }}" value="{{ old('nik', auth()->user()->nik) }}" required autofocus>
+
+                                            @if ($errors->has('nik'))
+                                                <span class="invalid-feedback" role="alert">
+                                                    <strong>{{ $errors->first('nik') }}</strong>
+                                                </span>
+                                            @endif
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <div class="form-group{{ $errors->has('golongan_darah') ? ' has-danger' : '' }}">
+                                            <label class="form-control-label" for="input-golongan_darah">{{ __('Golongan Darah') }}</label>
+                                            <select name="golongan_darah" id="input-golongan_darah" class="form-control">
+                                                <option value="" selected disabled>Pilih Golongan Darah</option>
+                                                {{-- @foreach (auth()->user()['golongan_darah'] as $goldar)
+                                                    <option value="{{$goldar}}" @if ($goldar == auth()->user()->golongan_darah) "selected" @endif >{{$goldar}}</option>
+                                                @endforeach --}}
+                                                <option value="A" {{(auth()->user()->golongan_darah == 'A') ? 'selected' : ''}} >A</option>
+                                                <option value="B" {{(auth()->user()->golongan_darah == 'B') ? 'selected' : ''}}>B</option>
+                                                <option value="AB" {{(auth()->user()->golongan_darah == 'AB') ? 'selected' : ''}}>AB</option>
+                                                <option value="O" {{(auth()->user()->golongan_darah == 'O') ? 'selected' : ''}}>O</option>
+                                            </select>
+
+                                            @if ($errors->has('golongan_darah'))
+                                                <span class="invalid-feedback" role="alert">
+                                                    <strong>{{ $errors->first('golongan_darah') }}</strong>
                                                 </span>
                                             @endif
                                         </div>

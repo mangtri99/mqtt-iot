@@ -3,6 +3,7 @@
 namespace App\Http\Livewire;
 
 use App\Models\Detak;
+use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 use Livewire\WithPagination;
 
@@ -13,7 +14,7 @@ class TabelDetak extends Component
     public function render()
     {
         return view('livewire.tabel-detak', [
-            'riwayat_detak' => Detak::latest()->get(),
+            'riwayat_detak' => Detak::where('user_id', '=', Auth::id())->latest()->get(),
         ]);
     }
 }

@@ -14,15 +14,17 @@
         <thead class="thead-light">
         <tr>
             <th scope="col" class="sort" data-sort="name">No</th>
+            <th scope="col" class="sort" data-sort="status">Tanggal Periksa</th>
             <th scope="col" class="sort" data-sort="budget">Suhu</th>
             <th scope="col" class="sort" data-sort="status">Keterangan</th>
-            <th scope="col" class="sort" data-sort="status">Tanggal Periksa</th>
+
         </tr>
         </thead>
         <tbody class="list">
         @foreach ($riwayat_suhu as $suhu)
             <tr>
                 <td>{{$loop->iteration}}</td>
+                <td>{{$suhu->created_at->isoFormat("d-M-Y - HH:mm")}}</td>
                 <td>{{$suhu->suhu}}</td>
                 @if ($suhu->suhu > 37)
                     <td>Tinggi</td>
@@ -30,7 +32,7 @@
                     <td>Normal</td>
                 @endif
 
-                <td>{{$suhu->created_at->isoFormat("d-M-Y - HH:mm")}}</td>
+
             </tr>
         @endforeach
         </tbody>

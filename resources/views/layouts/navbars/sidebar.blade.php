@@ -87,17 +87,17 @@
 
                 <li class="nav-item">
                     <a class="nav-link {{(request()->is('riwayat-suhu')) ? 'active' : ''}}" href="{{ route('riwayat-suhu') }}">
-                        <i class="ni ni-planet text-blue"></i> {{ __('Riwayat Suhu Tubuh') }}
+                        <i class="ni ni-book-bookmark  text-orange"></i> {{ __('Riwayat Suhu Tubuh') }}
                     </a>
                 </li>
                 <li class="nav-item ">
                     <a class="nav-link {{(request()->is('riwayat-detak')) ? 'active' : ''}}" href="{{ route('riwayat-detak') }}">
-                        <i class="ni ni-pin-3 text-orange"></i> {{ __('Riwayat Detak Jantung dan Kadar Oksigen') }}
+                        <i class="ni ni-book-bookmark text-orange"></i> {{ __('Riwayat Detak Jantung dan Saturasi Oksigen') }}
                     </a>
                 </li>
                 <li class="nav-item ">
                     <a class="nav-link {{(request()->is('riwayat-tekanan')) ? 'active' : ''}}" href="{{ route('riwayat-tekanan') }}">
-                        <i class="ni ni-pin-3 text-orange"></i> {{ __('Riwayat Tekanan Darah') }}
+                        <i class="ni ni-book-bookmark text-orange"></i> {{ __('Riwayat Tekanan Darah') }}
                     </a>
                 </li>
                 {{-- <li class="nav-item">

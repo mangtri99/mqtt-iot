@@ -7,7 +7,10 @@
             <div class="col-md-12 {{ $class ?? '' }}">
                 <h1 class="display-2 text-white">{{ $title }}</h1>
                 @if (isset($description) && $description)
-                    <p class="text-white mt-0 mb-5">{{ $description }}</p>
+                    <p class="text-white mt-0 mb-1">{{ $description }}</p>
+                @endif
+                @if (isset($description1) && $description1)
+                    <p class="text-white mt-0 mb-5">{{ $description1 }}</p>
                 @endif
             </div>
         </div>

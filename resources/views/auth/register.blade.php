@@ -1,4 +1,4 @@
-@extends('layouts.app', ['class' => 'bg-default'])
+@extends('layouts.app', ['class' => 'bg-default', 'titlePage' => 'Register'])
 
 @section('content')
     @include('layouts.headers.guest')
@@ -48,11 +48,28 @@
                                         <span class="input-group-text"><i class="ni ni-calendar-grid-58"></i></span>
                                     </div>
                                     {{-- <input class="form-control{{ $errors->has('tanggal_lahir') ? ' is-invalid' : '' }}" placeholder="{{ __('tanggal_lahir') }}" type="date" name="tanggal_lahir" value="{{ old('tanggal_lahir') }}" required> --}}
-                                    <input placeholder="Tanggal Lahir" class="form-control{{ $errors->has('tanggal_lahir') ? ' is-invalid' : '' }}" type="text" onfocus="(this.type='date')" id="date" value="{{ old('tanggal_lahir') }}" required>
+                                    <input name="tanggal_lahir" placeholder="Tanggal Lahir" class="form-control{{ $errors->has('tanggal_lahir') ? ' is-invalid' : '' }}" type="text" onfocus="(this.type='date')" id="date" value="{{ old('tanggal_lahir') }}" required>
                                 </div>
                                 @if ($errors->has('tanggal_lahir'))
                                     <span class="invalid-feedback" style="display: block;" role="alert">
                                         <strong>{{ $errors->first('tanggal_lahir') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                            <div class="form-group{{ $errors->has('jenis_kelamin') ? ' has-danger' : '' }}">
+                                <div class="input-group input-group-alternative">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text"><i class="ni ni-tag "></i></span>
+                                    </div>
+                                    <select name="jenis_kelamin" id="" class="form-control">
+                                        <option value="" selected disabled>Jenis Kelamin</option>
+                                        <option value="Laki-Laki">Laki-Laki</option>
+                                        <option value="Perempuan">Perempuan</option>
+                                    </select>
+                                </div>
+                                @if ($errors->has('jenis_kelamin'))
+                                    <span class="invalid-feedback" style="display: block;" role="alert">
+                                        <strong>{{ $errors->first('jenis_kelamin') }}</strong>
                                     </span>
                                 @endif
                             </div>

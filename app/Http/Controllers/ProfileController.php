@@ -18,14 +18,11 @@ class ProfileController extends Controller
      */
     public function edit()
     {
-        $data_suhu = Suhu::where('user_id', auth()->id())->latest()->first();
-        $data_detak = Detak::where('user_id', auth()->id())->latest()->first();
-        $data_tekanan = TekananDarah::where('user_id', auth()->id())->latest()->first();
-        return view('profile.edit', [
-            'last_suhu_user' => $data_suhu,
-            'last_detak_user' => $data_detak,
-            'last_tekanan_user' => $data_tekanan
-        ]);
+        if (auth()->user()->is_admin == 2) {
+            return view('profile.edit');
+        } else {
+            return view('admin.profile');
+        }
     }
 
     /**
@@ -36,9 +33,9 @@ class ProfileController extends Controller
      */
     public function update(ProfileRequest $request)
     {
-        if (auth()->user()->id == 1) {
-            return back()->withErrors(['not_allow_profile' => __('You are not allowed to change data for a default user.')]);
-        }
+        // if (auth()->user()->id == 1) {
+        //     return back()->withErrors(['not_allow_profile' => __('You are not allowed to change data for a default user.')]);
+        // }
 
         auth()->user()->update($request->all());
 
@@ -53,9 +50,9 @@ class ProfileController extends Controller
      */
     public function password(PasswordRequest $request)
     {
-        if (auth()->user()->id == 1) {
-            return back()->withErrors(['not_allow_password' => __('You are not allowed to change the password for a default user.')]);
-        }
+        // if (auth()->user()->id == 1) {
+        //     return back()->withErrors(['not_allow_password' => __('You are not allowed to change the password for a default user.')]);
+        // }
 
         auth()->user()->update(['password' => Hash::make($request->get('password'))]);
 

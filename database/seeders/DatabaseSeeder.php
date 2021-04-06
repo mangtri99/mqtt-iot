@@ -1,4 +1,5 @@
 <?php
+
 namespace Database\Seeders;
 
 use Illuminate\Support\Facades\DB;
@@ -13,6 +14,9 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        $this->call([UsersTableSeeder::class]);
+        // $this->call([UsersTableSeeder::class]);
+        // \App\Models\Detak::factory(30)->create();
+        \App\Models\Suhu::factory(30)->create();
+        \App\Models\TekananDarah::factory(30)->create();
     }
 }

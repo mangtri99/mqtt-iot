@@ -11,7 +11,7 @@
                 <a class="nav-link pr-0" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     <div class="media align-items-center">
                         <span class="avatar avatar-sm rounded-circle">
-                            <img alt="Image placeholder" src="{{ asset('argon') }}/img/theme/user.png">
+                            <img alt="Image placeholder" src="{{ asset('assets') }}/img/theme/user.png">
                         </span>
                         <div class="media-body ml-2 d-none d-lg-block">
                             <span class="mb-0 text-sm  font-weight-bold">{{ auth()->user()->name }}</span>
@@ -26,18 +26,7 @@
                         <i class="ni ni-single-02"></i>
                         <span>{{ __('My profile') }}</span>
                     </a>
-                    <a href="#" class="dropdown-item">
-                        <i class="ni ni-settings-gear-65"></i>
-                        <span>{{ __('Settings') }}</span>
-                    </a>
-                    <a href="#" class="dropdown-item">
-                        <i class="ni ni-calendar-grid-58"></i>
-                        <span>{{ __('Activity') }}</span>
-                    </a>
-                    <a href="#" class="dropdown-item">
-                        <i class="ni ni-support-16"></i>
-                        <span>{{ __('Support') }}</span>
-                    </a>
+
                     <div class="dropdown-divider"></div>
                     <a href="{{ route('logout') }}" class="dropdown-item" onclick="event.preventDefault();
                     document.getElementById('logout-form').submit();">

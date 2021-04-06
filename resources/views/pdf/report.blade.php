@@ -49,16 +49,16 @@
                 <h4>Yth.</h4>
                 <table>
                     <tr>
-                        <td>{{auth()->user()->name}}</td>
+                        <td>{{$user_export->name}}</td>
                     </tr>
                     <tr>
-                        <td>{{\Carbon\Carbon::parse(auth()->user()->tanggal_lahir)->isoFormat('d, MMMM Y')}} / {{Auth::user()->usia}} Thn</td>
+                        <td>{{\Carbon\Carbon::parse($user_export->tanggal_lahir)->isoFormat('D, MMMM Y')}} / {{$user_export->usia}} Thn</td>
                     </tr>
                     <tr>
-                        <td>{{auth()->user()->jenis_kelamin}}</td>
+                        <td>{{$user_export->jenis_kelamin}}</td>
                     </tr>
                     <tr>
-                        <td>{{auth()->user()->alamat}}</td>
+                        <td>{{$user_export->alamat}}</td>
                     </tr>
                     <tr>
                         <td></td>
@@ -89,6 +89,52 @@
         </div>
         <div style="margin-bottom: 10px"></div>
         <h4>A. &nbsp; Hasil Kesehatan Terakhir</h4>
+        <table class="table table-bordered">
+            <thead style="background-color: #F5F5F5">
+                <tr>
+                    <th>No</th>
+                    <th>Data</th>
+                    <th>Hasil</th>
+                    <th>Keterangan</th>
+                </tr>
+                <tbody>
+                    <tr>
+                        <td>1</td>
+                        <td>Suhu Tubuh</td>
+                        <td>{{$last_suhu->suhu}}</td>
+                        @if ($last_suhu->suhu > 37)
+                            <td>Tinggi</td>
+                        @elseif($last_suhu->suhu < 36)
+                            <td>Rendah</td>
+                        @else
+                            <td>Normal</td>
+                        @endif
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>Detak Jantung</td>
+                        <td>{{$last_detak->bpm}}</td>
+                        <td>{{$last_detak->detak_status}}</td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td>Saturasi Oksigen</td>
+                        <td>{{$last_detak->oksigen}}</td>
+                        @if($last_detak->oksigen < 95)
+                            <td>Rendah</td>
+                        @else
+                            <td>Normal</td>
+                        @endif
+                    </tr>
+                    <tr>
+                        <td>4</td>
+                        <td>Tekanan Darah</td>
+                        <td>{{$last_tekanan->sistole}}/{{$last_tekanan->diastole}}</td>
+                        <td>{{$last_tekanan->tekanan_status}}</td>
+                    </tr>
+                </tbody>
+            </thead>
+        </table>
         <h4>B. &nbsp; Rangkuman Riwayat Kesehatan </h4>
 
         <table class="table table-bordered">
@@ -141,6 +187,8 @@
             </thead>
         </table>
         <h4>C. &nbsp; Rincian Riwayat Pengukuran </h4>
+        <p> &nbsp; Berikut rincian 10 data pengukuran terakhir yang dilakukan </p>
+
         <table class="table table-bordered">
             <thead style="background-color: #F5F5F5">
                 <tr>
@@ -165,127 +213,10 @@
                 </tr>
 
                 @endfor
-                    {{-- <tr>
-                        <td>{{$loop->iteration}}</td>
-                        <td>{{$data->created_at->format("d-m-Y - H:i")}}</td>
-                        <td>{{$data->suhu->suhu}} &deg;C</td>
-                        <td>{{$data[0]->detak->bpm}} bpm</td>
-                        <td>{{$data[0]->detak->oksigen}} %</td>
-                        <td>{{$data[0]->tekanan_darah->sistole}}/{{$data->tekanan_darah->sistole}} mmHg</td>
-                    </tr> --}}
 
             </tbody>
         </table>
-        {{-- <div class="page-break"></div>
-        <h4>C. &nbsp; Lampiran Rincian Riwayat Pengukuran</h4>
-        <h4 class="text-center" style="margin-bottom: 20px;">10 Data Suhu Tubuh Terakhir</h4>
-        <table class="table table-bordered">
-            <thead style="background: #F5F5F5;">
-                <tr>
-                    <th>No</th>
-                    <th>Suhu</th>
-                    <th>Keterangan</th>
-                    <th>Tanggal Periksa</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach ($data_suhu as $suhu)
-                <tr>
-                    <td>{{$loop->iteration}}</td>
-                    <td>{{$suhu->suhu}} &deg;C</td>
-                    @if ($suhu->suhu > 37)
-                        <td>Tinggi</td>
-                    @elseif($suhu->suhu < 35)
-                        <td>Rendah</td>
-                    @else
-                        <td>Normal</td>
-                    @endif
-                    <td>{{$suhu->created_at->format("d-m-Y - H:i")}}</td>
-                </tr>
-                @endforeach
-            </tbody>
-        </table>
-        <div style="margin-bottom: 10px"></div>
-        <h4 class="text-center" style="margin-bottom: 20px;">10 Data Detak Jantung dan Kadar Oksigen Terakhir</h4>
-        <table class="table table-bordered">
-            <thead style="background: #F5F5F5;">
-                <tr>
-                    <th>No</th>
-                    <th>Detak Jantung</th>
-                    <th>Kadar Oksigen</th>
-                    <th>Keterangan Detak Jantung</th>
-                    <th>Keterangan Kadar Oksigen</th>
-                    <th>Tanggal Periksa</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach ($data_detak as $detak)
-                <tr>
-                    <td>{{$loop->iteration}}</td>
-                    <td>{{$detak->bpm}} bpm</td>
-                    <td>{{$detak->oksigen}} %</td>
-                    <td>{{$detak->detak_status}}</td>
-                    <td>
-                        @if($detak->oksigen < 90)
-                            Rendah
-                        @elseif(($detak->oksigen > 90) && ($detak->oksigen < 100))
-                            Normal
-                        @else
-                            Tinggi
-                        @endif
-                    </td>
-                    <td>{{$detak->created_at->format("d-m-Y - H:i")}}</td>
-                </tr>
-                @endforeach
-            </tbody>
-        </table>
-        <div style="margin-bottom: 10px"></div>
-        <h4 class="text-center" style="margin-bottom: 20px;">10 Data Tekanan Darah Terakhir</h4>
-        <table class="table table-bordered" >
-            <thead style="background: #F5F5F5;">
-                <tr>
-                    <th>No</th>
-                    <th>Sistole</th>
-                    <th>Keterangan</th>
-                    <th>Tanggal Periksa</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach ($data_tekanan as $tekanan)
-                <tr>
-                    <td>{{$loop->iteration}}</td>
-                    <td>{{$tekanan->sistole}} / {{$tekanan->diastole}} mmHg</td>
-                    <td>{{$tekanan->tekanan_status}}</td>
-                    <td>{{$tekanan->created_at->format("d-m-Y - H:i")}}</td>
-                </tr>
-                @endforeach
-            </tbody>
-        </table> --}}
-
-            {{-- <div class="row">
-                <div class="col-xs-6"></div>
-                <div class="col-xs-5">
-                    <table style="width: 100%">
-                        <tbody>
-                            <tr class="well" style="padding: 5px">
-                                <th style="padding: 5px"><div> Balance Due (CAD) </div></th>
-                                <td style="padding: 5px" class="text-right"><strong> $600 </strong></td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div> --}}
-
             <div style="margin-bottom: 0px">&nbsp;</div>
-
-            {{-- <div class="row">
-                <div class="col-xs-8 invbody-terms">
-                    Thank you for your business. <br>
-                    <br>
-                    <h4>Payment Terms</h4>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad eius quia, aut doloremque, voluptatibus quam ipsa sit sed enim nam dicta. Soluta eaque rem necessitatibus commodi, autem facilis iusto impedit!</p>
-                </div>
-            </div> --}}
         </div>
 
     </body>

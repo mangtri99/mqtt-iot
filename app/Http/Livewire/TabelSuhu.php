@@ -5,6 +5,7 @@ namespace App\Http\Livewire;
 use App\Models\Suhu;
 use Livewire\Component;
 use Livewire\WithPagination;
+use Illuminate\Support\Facades\Auth;
 
 class TabelSuhu extends Component
 {
@@ -15,7 +16,7 @@ class TabelSuhu extends Component
     public function render()
     {
         return view('livewire.tabel-suhu', [
-            'riwayat_suhu' => Suhu::latest()->get(),
+            'riwayat_suhu' => Suhu::where('user_id', '=', Auth::id())->latest()->get(),
         ]);
     }
 }

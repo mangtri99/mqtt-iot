@@ -25,11 +25,14 @@ class User extends Authenticatable
         'email',
         'alamat',
         'no_telp',
+        'nik',
+        'golongan_darah',
         'password',
         'no_pasien',
         'tanggal_lahir',
         'jenis_kelamin'
     ];
+    protected $golongan_darah = ['A', 'B', 'AB', 'O'];
 
     /**
      * The attributes that should be hidden for arrays.
@@ -64,16 +67,25 @@ class User extends Authenticatable
 
     public function detak()
     {
-        return $this->hasMany(Detak::class)->orderBy('created_at', 'desc')->take(10);
+        return $this->hasMany(Detak::class)->orderBy('created_at', 'desc');
     }
 
     public function suhu()
     {
-        return $this->hasMany(Suhu::class)->orderBy('created_at', 'desc')->take(10);
+        return $this->hasMany(Suhu::class)->orderBy('created_at', 'desc');
     }
 
     public function tekanan_darah()
     {
-        return $this->hasMany(TekananDarah::class)->orderBy('created_at', 'desc')->take(10);
+        return $this->hasMany(TekananDarah::class)->orderBy('created_at', 'desc');
+    }
+
+    public function getAvatarUserAttribute()
+    {
+        if ($this->attributes['jenis_kelamin'] == 'Laki-Laki') {
+            return url('assets\img\user_male.png');
+        } else {
+            return url('assets\img\user_female.png');
+        }
     }
 }

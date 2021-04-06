@@ -51,6 +51,8 @@ class TekananDarah extends Model
 
         else if ($sistole < 95 && $diastole < 70 && $usia >= 60)
             return 'Rendah';
+        else if ($sistole == null && $diastole == null)
+            return 'No Data';
         else
             return 'Normal';
     }

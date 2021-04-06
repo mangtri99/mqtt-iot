@@ -22,10 +22,9 @@ class TekananDarahFactory extends Factory
     public function definition()
     {
         return [
-            'user_id' => 2,
+            'user_id' => 3,
             'sistole' => rand(120, 160),
             'diastole' => rand(60, 100),
-            'keterangan' => 'normal'
         ];
     }
 }

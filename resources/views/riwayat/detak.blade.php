@@ -1,8 +1,9 @@
-@extends('layouts.app')
+@extends('layouts.app', ['titlePage' => __('Riwayat Detak Jantung dan SpO2')])
 
 @section('content')
 <div class="header bg-gradient-primary pb-8 pt-5 pt-md-8">
         <div class="container-fluid">
+            <input type="hidden" value="{{auth()->user()->id}}" id="user_id">
         </div>
     </div>
  <div class="container-fluid mt--8">
@@ -10,7 +11,7 @@
         <div class="col">
             <livewire:tabel-detak/>
         </div>
-        <div class="col">
+        {{-- <div class="col">
             <div class="card bg-white">
                 <div class="card-header bg-transparent">
                     <div class="row align-items-center">
@@ -19,20 +20,6 @@
                         <h5 class="text-muted mb-0">Riwayat 10 Pengukuran Terakhir</h5>
                         </div>
                         <div class="col">
-                        {{-- <ul class="nav nav-pills justify-content-end">
-                            <li class="nav-item mr-2 mr-md-0" data-toggle="chart" data-target="#chart-sales-dark" data-update="{&quot;data&quot;:{&quot;datasets&quot;:[{&quot;data&quot;:[0, 20, 10, 30, 15, 40, 20, 60, 60]}]}}" data-prefix="$" data-suffix="k">
-                            <a href="#" class="nav-link py-2 px-3 active" data-toggle="tab">
-                                <span class="d-none d-md-block">Month</span>
-                                <span class="d-md-none">M</span>
-                            </a>
-                            </li>
-                            <li class="nav-item" data-toggle="chart" data-target="#chart-sales-dark" data-update="{&quot;data&quot;:{&quot;datasets&quot;:[{&quot;data&quot;:[0, 20, 5, 25, 10, 30, 15, 40, 40]}]}}" data-prefix="$" data-suffix="k">
-                            <a href="#" class="nav-link py-2 px-3" data-toggle="tab">
-                                <span class="d-none d-md-block">Week</span>
-                                <span class="d-md-none">W</span>
-                            </a>
-                            </li>
-                        </ul> --}}
                         </div>
                     </div>
                     </div>
@@ -43,7 +30,8 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> --}}
+        @include('chart.chart-detak')
     </div>
  </div>
 @endsection
@@ -56,8 +44,9 @@
 @endpush
 
 @push('js')
-    <script>
-        var url = "{{url('chart-detak')}}";
+    {{-- <script>
+        var id_user = $('#user_id').val();
+        var url = "{{url('chart-detak')}}" + "/" + id_user;
         var bpm = new Array();
         var oksigen = new Array();
         var tanggal = new Array();
@@ -122,7 +111,8 @@
               });
           });
         });
-    </script>
+    </script> --}}
+
     <script src="{{ asset('argon') }}/vendor/chart.js/dist/Chart.min.js"></script>
     <script src="{{ asset('argon') }}/vendor/chart.js/dist/Chart.extension.js"></script>
 

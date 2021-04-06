@@ -22,7 +22,7 @@ class DetakFactory extends Factory
     public function definition()
     {
         return [
-            'user_id' => 2,
+            'user_id' => 3,
             'bpm' => rand(60, 100),
             'oksigen' => rand(85, 100)
         ];

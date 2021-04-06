@@ -22,7 +22,7 @@ class SuhuFactory extends Factory
     public function definition()
     {
         return [
-            'user_id' => 2,
+            'user_id' => 3,
             'suhu' => rand(35, 38),
         ];
     }
