@@ -21,7 +21,7 @@
         @foreach ($riwayat_tekanan as $tekanan)
             <tr>
                 <td>{{$loop->iteration}}</td>
-                <td>{{$tekanan->created_at->isoFormat("d-M-Y - HH:mm")}}</td>
+                <td>{{$tekanan->created_at->format("d-m-Y - H:i")}}</td>
                 <td>{{$tekanan->sistole}} / {{$tekanan->diastole}} mmHg</td>
                 <td>{{$tekanan->tekanan_status}}</td>
 

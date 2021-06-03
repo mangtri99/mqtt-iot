@@ -24,7 +24,7 @@
         @foreach ($riwayat_suhu as $suhu)
             <tr>
                 <td>{{$loop->iteration}}</td>
-                <td>{{$suhu->created_at->isoFormat("d-M-Y - HH:mm")}}</td>
+                <td>{{$suhu->created_at->format("d-m-Y - H:i")}}</td>
                 <td>{{$suhu->suhu}}</td>
                 @if ($suhu->suhu > 37)
                     <td>Tinggi</td>

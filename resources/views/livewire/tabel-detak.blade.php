@@ -23,7 +23,7 @@
         @foreach ($riwayat_detak as $detak)
             <tr>
                 <td>{{$loop->iteration}}</td>
-                <td>{{$detak->created_at->isoFormat("d-M-Y - HH:mm")}}</td>
+                <td>{{$detak->created_at->format("d-m-Y - H:i")}}</td>
                 <td>{{$detak->bpm}}</td>
                 @if ($detak->bpm > 100)
                     <td>BPM Tinggi</td>
