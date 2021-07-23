@@ -73,10 +73,11 @@
                             }
                         }],
                         yAxes: [{
+
                             ticks: {
                                 max: 40,
-                                min: 30,
-                                stepSize: 2
+                                min: 35,
+                                stepSize: 0.5
                                 // suggestedMin: 30,
                             },
                             display: true,

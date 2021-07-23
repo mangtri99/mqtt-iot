@@ -37,22 +37,22 @@ class HomeController extends Controller
             $tekanan = TekananDarah::where('user_id', Auth::user()->id)
                 ->latest()->first();
 
-            $suhu_tinggi = Suhu::orderBy('suhu', 'desc')->first();
-            $suhu_rendah = Suhu::orderBy('suhu', 'asc')->first();
-            $suhu_rata2 = Suhu::avg('suhu');
+            $suhu_tinggi = Suhu::orderBy('suhu', 'desc')->where('user_id', Auth::user()->id)->first();
+            $suhu_rendah = Suhu::orderBy('suhu', 'asc')->where('user_id', Auth::user()->id)->first();
+            $suhu_rata2 = Suhu::where('user_id', Auth::user()->id)->avg('suhu');
 
-            $detak_tinggi = Detak::orderBy('bpm', 'desc')->first();
-            $detak_rendah = Detak::orderBy('bpm', 'asc')->first();
-            $detak_rata2 = Detak::avg('bpm');
+            $detak_tinggi = Detak::orderBy('bpm', 'desc')->where('user_id', Auth::user()->id)->first();
+            $detak_rendah = Detak::orderBy('bpm', 'asc')->where('user_id', Auth::user()->id)->first();
+            $detak_rata2 = Detak::where('user_id', Auth::user()->id)->avg('bpm');
 
-            $oksigen_tinggi = Detak::orderBy('oksigen', 'desc')->first();
-            $oksigen_rendah = Detak::orderBy('oksigen', 'asc')->first();
-            $oksigen_rata2 = Detak::avg('oksigen');
+            $oksigen_tinggi = Detak::orderBy('oksigen', 'desc')->where('user_id', Auth::user()->id)->first();
+            $oksigen_rendah = Detak::orderBy('oksigen', 'asc')->where('user_id', Auth::user()->id)->first();
+            $oksigen_rata2 = Detak::where('user_id', Auth::user()->id)->avg('oksigen');
 
-            $tekanan_tinggi = TekananDarah::orderBy('sistole', 'desc')->first();
-            $tekanan_rendah = TekananDarah::orderBy('sistole', 'asc')->first();
-            $tekanan_rata2_sistole = TekananDarah::avg('sistole');
-            $tekanan_rata2_diastole = TekananDarah::avg('diastole');
+            $tekanan_tinggi = TekananDarah::orderBy('sistole', 'desc')->where('user_id', Auth::user()->id)->first();
+            $tekanan_rendah = TekananDarah::orderBy('sistole', 'asc')->where('user_id', Auth::user()->id)->first();
+            $tekanan_rata2_sistole = TekananDarah::where('user_id', Auth::user()->id)->avg('sistole');
+            $tekanan_rata2_diastole = TekananDarah::where('user_id', Auth::user()->id)->avg('diastole');
 
             // return $suhu;
             return view('dashboard', [

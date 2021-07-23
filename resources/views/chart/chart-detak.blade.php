@@ -47,13 +47,13 @@
                   data: {
                       labels:tanggal2,
                       datasets: [{
-                          label: 'Detak Jantung (bpm)',
+                          label: 'BPM',
                             fill:false,
                           data: bpm,
                           borderColor: '#f41212',
                           backgroundColor: '#f41212',
                       },{
-                          label: 'Oksigen (%)',
+                          label: 'SpO2',
                             fill:false,
                           data: oksigen,
                           borderColor: '#6694e7',

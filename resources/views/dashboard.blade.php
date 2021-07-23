@@ -328,7 +328,7 @@
                             <div class="col-auto">
                             <!-- Avatar -->
                             <a href="#" class="avatar rounded-circle" style="background-color: white">
-                                <img alt="Image placeholder" src="../assets/img/theme/oxygen.png">
+                                <img alt="Image placeholder" src="../assets/img/spo2.png" style="border-radius: 0%;">
                             </a>
                             </div>
                             <div class="col">
@@ -347,8 +347,8 @@
                         <div class="row align-items-center">
                             <div class="col-auto">
                             <!-- Avatar -->
-                            <a href="#" class="avatar rounded-circle" style="background-color: white">
-                                <img alt="Image placeholder" src="../assets/img/theme/blood.png">
+                            <a href="#" class="avatar rounded-circle" style="background-color: white;">
+                                <img alt="Image placeholder" src="../assets/img/theme/blood.png" style="border-radius: 0%;">
                             </a>
                             </div>
                             <div class="col">
