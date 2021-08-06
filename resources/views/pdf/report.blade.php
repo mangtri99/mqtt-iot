@@ -80,6 +80,52 @@
                 </table> --}}
             </div>
         </div>
+        <div class="row">
+
+            <div class="col-xs-5" style="margin-bottom: 10px">
+                <div>
+                    <p>Keterangan</p>
+                    <table class="table table-bordered" style="width: 100%; font-size: 8pt;">
+                        <thead>
+                            <tr style="background-color: #F5F5F5">
+                                <th>Objek</th>
+                                <th>Rendah</th>
+                                <th>Normal</th>
+                                <th>Tinggi</th>
+                            </tr>
+                        </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Suhu Tubuh </td>
+                                    <td> <p style="margin-bottom: 0px"> Kurang dari 36 &deg;C  </p> </td>
+                                    <td> 36 &deg;C - 37.5 &deg;C </td>
+                                    <td> Lebih dari 37.5 &deg;C </td>
+                                </tr>
+                                <tr>
+                                    <td> Detak Jantung </td>
+                                    <td>
+                                        Kurang dari 60 bpm
+                                    </td>
+                                    <td> 60 - 100 bpm </td>
+                                    <td> Lebih dari 100 bpm </td>
+                                </tr>
+                                <tr>
+                                    <td> Saturasi Oksigen </td>
+                                    <td> Kurang dari 95% </td>
+                                    <td> 95 - 100% </td>
+                                    <td> Lebih dari 100% </td>
+                                </tr>
+                                <tr>
+                                    <td> Tekanan Darah </td>
+                                    <td> Kurang dari 90/60 mmHg </td>
+                                    <td> 120-139/60-90 mmHg </td>
+                                    <td> Lebih dari 140/90 mmHg </td>
+                                </tr>
+                            </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
         <div style="margin-bottom: 10px"></div>
         <h4>A. &nbsp; Hasil Kesehatan Terakhir</h4>
         <table class="table table-bordered">
@@ -128,6 +174,7 @@
                 </tbody>
             </thead>
         </table>
+        <div class="page-break"></div>
         <h4>B. &nbsp; Rangkuman Riwayat Kesehatan </h4>
 
         <table class="table table-bordered">
@@ -189,7 +236,7 @@
                     <th>Tanggal Periksa</th>
                     <th>Suhu Tubuh</th>
                     <th>Detak Jantung</th>
-                    <th>Kadar Oksigen (SpO2)</th>
+                    <th>Saturasi Oksigen (SpO2)</th>
                     <th>Tekanan Darah</th>
                 </tr>
             </thead>
@@ -221,51 +268,6 @@
         </table>
             <div style="margin-bottom: 0px">&nbsp;</div>
         </div>
-        <div style="display: flex; justify-content: flex-end;">
-            <div class="col-xs-6"></div>
-            <div class="col-xs-5" style="margin-bottom: 10px">
-                <div class="text-right">
-                    <p>Keterangan</p>
-                    <table class="table table-bordered" style="width: 100%; font-size: 8pt;">
-                        <thead>
-                            <tr style="background-color: #F5F5F5">
-                                <th>Objek</th>
-                                <th>Rendah</th>
-                                <th>Normal</th>
-                                <th>Tinggi</th>
-                            </tr>
-                        </thead>
-                            <tbody>
-                                <tr>
-                                    <td>Suhu Tubuh </td>
-                                    <td> <p style="margin-bottom: 0px"> Kurang dari 36 &deg;C  </p> </td>
-                                    <td> 36 &deg;C - 37.2 &deg;C </td>
-                                    <td> Lebih dari 37.2 &deg;C </td>
-                                </tr>
-                                <tr>
-                                    <td> Detak Jantung </td>
-                                    <td>
-                                        Kurang dari 60 bpm
-                                    </td>
-                                    <td> 60 - 100 bpm </td>
-                                    <td> Lebih dari 100 bpm </td>
-                                </tr>
-                                <tr>
-                                    <td> Saturasi Oksigen </td>
-                                    <td> Kurang dari 95% </td>
-                                    <td> 95 - 100% </td>
-                                    <td> Lebih dari 100% </td>
-                                </tr>
-                                <tr>
-                                    <td> Tekanan Darah </td>
-                                    <td> Kurang dari 90/60 mmHg </td>
-                                    <td> 120-139/60-90 mmHg </td>
-                                    <td> Lebih dari 140/90 mmHg </td>
-                                </tr>
-                            </tbody>
-                    </table>
-                </div>
-            </div>
-        </div>
+
     </body>
     </html>
