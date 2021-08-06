@@ -19,23 +19,39 @@ class Detak extends Model
         return $this->belongsTo(User::class);
     }
 
+    public function getOksigenStatusAttribute(){
+        $spo2 = $this->attributes['oksigen'];
+        if($spo2<95)
+            return 'Rendah';
+        else
+            return 'Normal';
+    }
+
     public function getDetakStatusAttribute()
     {
         $bpm = $this->attributes['bpm'];
 
-
-        if (($bpm < 70) && (Auth::user()->usia < 10))
-            return 'Rendah';
-
-        elseif (($bpm > 70) && ($bpm < 120) && (Auth::user()->usia < 10))
-            return 'Normal';
-        elseif (($bpm > 120) && (Auth::user()->usia < 10))
+        if($bpm > 100 && Auth::user()->usia > 18)
             return 'Tinggi';
-        elseif (($bpm < 60) && (Auth::user()->usia > 10))
+        elseif($bpm < 60 && Auth::user()->usia > 18)
             return 'Rendah';
-        elseif (($bpm > 60) && ($bpm < 100) && (Auth::user()->usia > 10))
-            return 'Normal';
         else
-            return 'Tinggi';
+            return 'Normal';
+
+
+
+        // if (($bpm < 70) && (Auth::user()->usia < 10))
+        //     return 'Rendah';
+
+        // elseif (($bpm > 70) && ($bpm < 120) && (Auth::user()->usia < 10))
+        //     return 'Normal';
+        // elseif (($bpm > 120) && (Auth::user()->usia < 10))
+        //     return 'Tinggi';
+        // elseif (($bpm < 60) && (Auth::user()->usia > 10))
+        //     return 'Rendah';
+        // elseif (($bpm > 60) && ($bpm < 100) && (Auth::user()->usia > 10))
+        //     return 'Normal';
+        // else
+        //     return 'Tinggi';
     }
 }

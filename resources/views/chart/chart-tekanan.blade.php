@@ -11,9 +11,9 @@
             </div>
             </div>
         <div class="card-body">
-            <div class="chart">
+            <div class="">
                 <!-- Chart wrapper -->
-                <canvas height="600" width="500" id="chart-tensi" class="chart-canvas"></canvas>
+                <canvas height="300" width="500" id="chart-tensi" class=""></canvas>
             </div>
         </div>
     </div>
@@ -59,48 +59,119 @@
                       }]
                   },
                   options: {
-                      legend: {
-                        display: true,
-                        align: 'start',
-                        position: 'bottom',
-                        labels: {
-                            boxWidth: 20,
+                    interaction: {
+                        intersect: false,
+                        mode: 'index',
+                    },
+                    responsive: true,
+                    plugins: {
+                        autocolors: false,
+                        annotation: {
+                            annotations: {
+                                line1: {
+                                    type: 'line',
+                                    yMin: 140,
+                                    yMax: 140,
+                                    borderColor: 'rgb(255, 99, 132)',
+                                    borderWidth: 4,
+                                    label: {
+                                        color: '#a88d32',
+                                        content: 'Warning Tekanan Darah!',
+                                        position: 'center',
+                                        enabled: true
+                                    }
+                                }
+                            }
+                        },
+                        title: {
+                            display: true,
+                            text: 'Chart Tekanan Darah'
                         }
                     },
-                    //  responsive: true,
-                    title: {
-                        display: true,
-                        text: 'Chart'
-                    },
-                    tooltips: {
-                        mode: 'index',
-                        intersect: false,
-                    },
-                    hover: {
-                        mode: 'nearest',
-                        intersect: true
-                    },
                     scales: {
-                        xAxes: [{
+                        x: {
                             display: true,
-                            scaleLabel: {
+                            title: {
                                 display: true,
-                                labelString: 'Tanggal Pemeriksaan'
+                                text: 'Tanggal Pemeriksaan',
+                                color: '#32a852',
+                                font: {
+                                    size: 18,
+                                    weight: 'bold',
+                                    lineHeight: 1.2,
+                                },
+                                padding: {top: 10, left: 0, right: 0, bottom: 0}
                             }
-                        }],
-                        yAxes: [{
-                            display: true,
-                            scaleLabel: {
+                        },
+                        y: {
+                            title: {
                                 display: true,
-                                labelString: 'mmHg'
+                                text: 'mmHg',
+                                color: '#a83e32',
+                                font: {
+                                    size: 14,
+                                    weight: 'bold',
+                                    lineHeight: 1.2,
+                                },
                             },
-                            ticks: {
-                                min: 50,
-                                max: 150,
-                                stepSize: 15,
-                            }
-                        }]
+                            min: 60,
+                            max: 150,
+                            type: 'linear',
+                            display: true,
+                            position: 'left',
+                        },
+                        y1: {
+                            type: 'linear',
+                            display: true,
+                            position: 'right',
+                            // grid line settings
+                            grid: {
+                                drawOnChartArea: false, // only want the grid lines for one axis to show up
+                            },
+                        },
                     }
+                    //   legend: {
+                    //     display: true,
+                    //     align: 'start',
+                    //     position: 'bottom',
+                    //     labels: {
+                    //         boxWidth: 20,
+                    //     }
+                    // },
+                    // //  responsive: true,
+                    // title: {
+                    //     display: true,
+                    //     text: 'Chart'
+                    // },
+                    // tooltips: {
+                    //     mode: 'index',
+                    //     intersect: false,
+                    // },
+                    // hover: {
+                    //     mode: 'nearest',
+                    //     intersect: true
+                    // },
+                    // scales: {
+                    //     xAxes: [{
+                    //         display: true,
+                    //         scaleLabel: {
+                    //             display: true,
+                    //             labelString: 'Tanggal Pemeriksaan'
+                    //         }
+                    //     }],
+                    //     yAxes: [{
+                    //         display: true,
+                    //         scaleLabel: {
+                    //             display: true,
+                    //             labelString: 'mmHg'
+                    //         },
+                    //         ticks: {
+                    //             min: 50,
+                    //             max: 150,
+                    //             stepSize: 15,
+                    //         }
+                    //     }]
+                    // }
                   }
               });
           });

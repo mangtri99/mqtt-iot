@@ -22,18 +22,27 @@ class TekananDarah extends Model
         $sistole = $this->attributes['sistole'];
         $diastole = $this->attributes['diastole'];
         // $usia = auth()->user()->usia;
-        if ($sistole < 90 && $diastole < 60)
-            return 'Hipotensi';
-        else if ($sistole > 90 && $sistole < 120 && $diastole > 59 && $diastole < 80)
-            return 'Normal';
-        else if ($sistole >= 120 && $sistole < 140 && $diastole > 79 && $diastole < 90)
-            return 'Pra-Hipertensi';
-        else if ($sistole >= 140 && $sistole < 160 && $diastole > 89 && $diastole < 100)
-            return 'Hipertensi Tk. I';
-        else if ($sistole >= 160 && $diastole >= 100)
-            return 'Hipertensi Tk. II';
+        if ($sistole < 95  && $diastole < 60 && Auth::user()-> usia > 18 && Auth::user()-> usia <= 40)
+            return 'Rendah';
+        elseif ($sistole > 135 && $diastole > 80 && Auth::user()-> usia > 18 && Auth::user()-> usia <= 40)
+            return 'Tinggi';
+
+        elseif ($sistole < 110 && $diastole < 70 && Auth::user()-> usia > 40 && Auth::user()-> usia <= 60)
+            return 'Rendah';
+        elseif ($sistole > 145 && $diastole > 90 && Auth::user()-> usia > 40 && Auth::user()-> usia <= 60)
+            return 'Tinggi';
         else
             return 'Normal';
+        // else if ($sistole > 90 && $sistole < 120 && $diastole > 59 && $diastole < 80)
+        //     return 'Normal';
+        // else if ($sistole >= 120 && $sistole < 140 && $diastole > 79 && $diastole < 90)
+        //     return 'Pra-Hipertensi';
+        // else if ($sistole >= 140 && $sistole < 160 && $diastole > 89 && $diastole < 100)
+        //     return 'Hipertensi Tk. I';
+        // else if ($sistole >= 160 && $diastole >= 100)
+        //     return 'Hipertensi Tk. II';
+        // else
+        //     return 'Normal';
         //anak-anak
         // if ($sistole > 120 && $diastole >= 80 && $usia < 18)
         //     return 'Tinggi';

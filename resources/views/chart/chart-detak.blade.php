@@ -11,9 +11,9 @@
             </div>
             </div>
         <div class="card-body">
-            <div class="chart">
+            {{-- <div class="chart"> --}}
                 <!-- Chart wrapper -->
-                <canvas height="600" width="500" id="chart-detak" class="chart-canvas"></canvas>
+                <canvas height="300" width="500" id="chart-detak" class=""></canvas>
             </div>
         </div>
     </div>
@@ -61,49 +61,151 @@
                       }]
                   },
                   options: {
-                    legend: {
-                        display: true,
-                        align: 'start',
-                        position: 'bottom',
-                        labels: {
-                            boxWidth: 20,
+                    interaction: {
+                        intersect: false,
+                        mode: 'index',
+                    },
+                      responsive: true,
+                      plugins: {
+                        autocolors: false,
+                        annotation: {
+                            annotations: {
+                                line1: {
+                                    type: 'line',
+                                    yMin: 100,
+                                    yMax: 100,
+                                    borderColor: 'rgb(255, 99, 132)',
+                                    borderWidth: 4,
+                                    label: {
+                                        color: '#a88d32',
+                                        content: 'Batas atas BPM!',
+                                        position: 'end',
+                                        enabled: true
+                                    }
+                                },
+                                // line2: {
+                                //     type: 'line',
+                                //     yMin: 95,
+                                //     yMax: 95,
+                                //     borderColor: 'rgb(168, 164, 50)',
+                                //     borderWidth: 4,
+                                //     label: {
+                                //         color: '#a88d32',
+                                //         content: 'Batas bawah SpO2!',
+                                //         position: 'end',
+                                //         enabled: true
+                                //     }
+                                // }
+                            }
+                        },
+                        title: {
+                            display: true,
+                            text: 'Chart Detak Jantung dan Saturasi Oksigen'
                         }
                     },
-                    //  responsive: true,
-                    title: {
-                        display: true,
-                        text: 'Chart'
-                    },
-                    tooltips: {
-                        mode: 'index',
-                        intersect: false,
-                    },
-                    hover: {
-                        mode: 'nearest',
-                        intersect: true
-                    },
                     scales: {
-                        xAxes: [{
+                        x: {
                             display: true,
-                            scaleLabel: {
+                            title: {
                                 display: true,
-                                labelString: 'Tanggal Pemeriksaan'
+                                text: 'Tanggal Pemeriksaan',
+                                color: '#32a852',
+                                font: {
+                                    size: 18,
+                                    weight: 'bold',
+                                    lineHeight: 1.2,
+                                },
+                                padding: {top: 10, left: 0, right: 0, bottom: 0}
                             }
-                        }],
-                        yAxes: [{
-                            display: true,
-                            scaleLabel: {
+                        },
+                        y: {
+                            title: {
                                 display: true,
-                                labelString: 'Value'
+                                text: 'BPM',
+                                color: '#a83e32',
+                                font: {
+                                    size: 14,
+                                    weight: 'bold',
+                                    lineHeight: 1.2,
+                                },
                             },
-                            ticks: {
-                                min: 40,
-                                max: 150,
-                                stepSize: 30
-                            }
-                        }]
+                            min: 50,
+                            max: 120,
+                            type: 'linear',
+                            display: true,
+                            position: 'left',
+                        },
+                        y1: {
+                            type: 'linear',
+                            display: true,
+                            position: 'right',
+                            // grid line settings
+                            grid: {
+                                drawOnChartArea: false, // only want the grid lines for one axis to show up
+                            },
+                        },
                     }
                   }
+
+                //   options: {
+                //     responsive: true,
+                //     // plugins: {
+                //     //     autocolors: false,
+                //     //     annotation: {
+                //     //         annotations: {
+                //     //             line1: {
+                //     //             type: 'line',
+                //     //             yMin: 80,
+                //     //             yMax: 80,
+                //     //             borderColor: 'rgb(255, 99, 132)',
+                //     //             borderWidth: 2,
+                //     //             }
+                //     //         }
+                //     //     }
+                //     // },
+                //     legend: {
+                //         display: true,
+                //         align: 'start',
+                //         position: 'bottom',
+                //         labels: {
+                //             boxWidth: 20,
+                //         }
+                //     },
+                //     //  responsive: true,
+                //     title: {
+                //         display: true,
+                //         text: 'Chart'
+                //     },
+                //     tooltips: {
+                //         mode: 'index',
+                //         intersect: false,
+                //     },
+                //     hover: {
+                //         mode: 'nearest',
+                //         intersect: true
+                //     },
+                //     scales: {
+                //         xAxes: [{
+                //             display: true,
+                //             scaleLabel: {
+                //                 display: true,
+                //                 labelString: 'Tanggal Pemeriksaan'
+                //             }
+                //         }],
+                //         yAxes: [{
+                //             display: true,
+                //             scaleLabel: {
+                //                 display: true,
+                //                 labelString: 'Value'
+                //             },
+                //             // ticks: {
+                //             //     min: 40,
+                //             //     max: 150,
+                //             //     stepSize: 30
+                //             // }
+                //         }]
+                //     }
+                //   }
               });
           });
         });

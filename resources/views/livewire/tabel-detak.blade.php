@@ -25,20 +25,10 @@
                 <td>{{$loop->iteration}}</td>
                 <td>{{$detak->created_at->format("d-m-Y - H:i")}}</td>
                 <td>{{$detak->bpm}}</td>
-                @if ($detak->bpm > 100)
-                    <td>BPM Tinggi</td>
-                @elseif($detak->bpm<60)
-                    <td>BPM Rendah</td>
-                @else
-                    <td>BPM Normal</td>
-                @endif
+                <td>BPM {{$detak->detak_status}}</td>
 
                 <td>{{$detak->oksigen}} %</td>
-                @if ($detak->oksigen < 95)
-                    <td>Kadar Oksigen Rendah</td>
-                @else
-                    <td>Kadar Oksigen Normal</td>
-                @endif
+                <td>Oksigen {{$detak->oksigen_status}}</td>
 
             </tr>
         @endforeach

@@ -57,7 +57,7 @@ class PdfController extends Controller
         $tekanan_rata2_sistole = TekananDarah::where('user_id', '=', $user)->avg('sistole');
         $tekanan_rata2_diastole = TekananDarah::where('user_id', '=', $user)->avg('diastole');
         // view()->share('data_suhu', $data_suhu);
-        if ($total_pengukuran != 0) {
+        if ($total_pengukuran > 5) {
             $pdf = PDF::loadview('pdf.report', [
                 'last_suhu' => $last_suhu,
                 'last_detak' => $last_detak_sp02,
@@ -80,8 +80,10 @@ class PdfController extends Controller
                 'user_export' => $user_export
             ]);
             return $pdf->download('Riwayat-' . $user_export['name'] . '.pdf');
-        } else {
+        } else if($total_pengukuran == 0) {
             return redirect()->back()->with('error', 'Anda belum pernah melakukan pengukuran, Cek Kesehatan Anda secara rutin');
+        } else {
+            return redirect()->back()->with('error', 'Minimal lakukan pengukuran sebanyak 5 kali untuk mengunduh riwayat kesehatan anda');
         }
         // $user_login = Auth::id();
         // $data = User::where('id', '=', $user_login)->with('detak', 'suhu', 'tekanan_darah')->get();

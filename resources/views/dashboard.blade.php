@@ -14,6 +14,7 @@
                 <h4 class="font-weight-bold text-white mb-3">Update Terakhir,
                     @if (isset($suhu->created_at))
                         {{$suhu->created_at->isoFormat('D MMMM Y - H:m ')}}
+                        {{-- {{$suhu->created_at->format('d-M-Y')}} --}}
                     @else
                         (Anda belum pernah melakukan pengukuran)
                     @endif
@@ -52,18 +53,18 @@
                                 <p class="mt-3 mb-0 text-muted text-sm">
                                     <span class="text-success mr-2">
                                     @if (isset($suhu->suhu))
-                                        @if ($suhu->suhu >= 37)
+                                        @if ($suhu->suhu_status == 'Tinggi')
                                             <i class="fas fa-arrow-up"></i>
-                                            Tinggi
-                                        @elseif($suhu->suhu < 37)
+                                            {{$suhu->suhu_status}}
+                                        @elseif($suhu->suhu_status == 'Rendah')
                                             <i class="fas fa-arrow-up"></i>
-                                            Rendah
+                                            {{$suhu->suhu_status}}
                                         @else
                                             <i class="fas fa-minus"></i>
-                                            Normal
+                                            {{$suhu->suhu_status}}
                                         @endif
                                     @else
-                                        <i class="fas fa-arrow-up"></i>
+                                        <i class="fas fa-times"></i>
                                         No Data
                                     @endif
                                     </span>
@@ -101,28 +102,19 @@
                                 <p class="mt-3 mb-0 text-muted text-sm">
                                     <span class="text-success mr-2">
                                     @if (isset($detak->bpm))
-                                        @if (($detak->bpm < 70) && (Auth::user()->usia < 10))
+                                        @if ($detak->detak_status =='Rendah')
                                             <i class="fas fa-arrow-down"></i>
-                                            Rendah
-                                        @elseif(($detak->bpm > 70) && ($detak->bpm < 120) && (Auth::user()->usia < 10))
-                                            <i class="fas fa-minus"></i>
-                                            Normal
-                                        @elseif(($detak->bpm > 120) && (Auth::user()->usia < 10)))
-                                            <i class="fas fa-arrow-up"></i>
-                                            Tinggi
-                                        @elseif(($detak->bpm < 60 ) && (Auth::user()->usia > 10))
-                                            <i class="fas fa-arrow-down"></i>
-                                            Rendah
-                                        @elseif(($detak->bpm > 60) && ($detak->bpm < 100) && (Auth::user()->usia > 10))
-                                            <i class="fas fa-minus"></i>
-                                            Normal
+                                            {{$detak->detak_status}}
 
-                                        @else
+                                        @elseif($detak->detak_status =='Tinggi')
                                             <i class="fas fa-arrow-up"></i>
-                                            Tinggi
+                                            {{$detak->detak_status}}
+                                        @else
+                                            <i class="fas fa-minus"></i>
+                                            {{$detak->detak_status}}
                                         @endif
                                     @else
-                                        <i class="fas fa-minus"></i>
+                                        <i class="fas fa-times"></i>
                                             No Data
                                     @endif
                                     </span>
@@ -160,17 +152,18 @@
                                 <p class="mt-3 mb-0 text-muted text-sm">
                                     <span class="text-success mr-2">
                                         @if (isset($detak->oksigen))
-                                            @if($detak->oksigen < 90)
+                                            @if($detak->oksigen_status == 'Rendah')
                                                 <i class="fas fa-arrow-down"></i>
-                                            @elseif(($detak->oksigen > 90) && ($detak->oksigen < 100))
-                                                <i class="fas fa-minus"></i>
-                                                Normal
-                                            @else
+                                                {{$detak->oksigen_status}}
+                                            @elseif($detak->oksigen_status == 'Tinggi')
                                                 <i class="fas fa-arrow-up"></i>
-                                                Tinggi
+                                                {{$detak->oksigen_status}}
+                                            @else
+                                                <i class="fas fa-minus"></i>
+                                                {{$detak->oksigen_status}}
                                             @endif
                                         @else
-                                            <i class="fas fa-minus"></i>
+                                            <i class="fas fa-times"></i>
                                                 No Data
                                         @endif
                                     </span>
@@ -211,7 +204,7 @@
                                              <i class="fas fa-minus"></i>
                                             {{$tekananDarah->tekanan_status}}
                                         @else
-                                            <i class="fas fa-minus"></i>
+                                            <i class="fas fa-times"></i>
                                             No Data
                                         @endif
                                     </span>

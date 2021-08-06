@@ -45,35 +45,28 @@
         {{-- <div style="margin-bottom: 0px">&nbsp;</div> --}}
 
         <div class="row" style="margin-bottom: 10px">
-            <div class="col-xs-6">
+            <div class="col-xs-5">
+
                 <h4>Yth.</h4>
-                <table>
-                    <tr>
-                        <td>{{$user_export->name}}</td>
-                    </tr>
-                    <tr>
-                        <td>{{\Carbon\Carbon::parse($user_export->tanggal_lahir)->isoFormat('D, MMMM Y')}} / {{$user_export->usia}} Thn</td>
-                    </tr>
-                    <tr>
-                        <td>{{$user_export->jenis_kelamin}}</td>
-                    </tr>
-                    <tr>
-                        <td>{{$user_export->alamat}}</td>
-                    </tr>
-                    <tr>
-                        <td></td>
-                    </tr>
-                </table>
+                <p style="margin-bottom: 0px">{{$user_export->name}}</p>
+                <p style="margin-bottom: 0px">{{\Carbon\Carbon::parse($user_export->tanggal_lahir)->isoFormat('D, MMMM Y')}} / {{$user_export->usia}} Thn</p>
+                <p style="margin-bottom: 0px">
+                    {{$user_export->jenis_kelamin}}
+                </p>
+                <p style="margin-bottom: 0px">
+                    {{$user_export->alamat}}
+                </p>
             </div>
 
-            <div class="col-xs-5">
-                <table style="width: 100%">
+            <div class="col-xs-6">
+                <p class="text-right"><strong> Tanggal Laporan: </strong>{{\Carbon\Carbon::now()->isoFormat('D MMMM Y')}}</p>
+                {{-- <table style="width: 100%">
                     <tbody>
                         <tr>
-                            <td class="text-right"><strong> Tanggal Laporan: </strong>{{\Carbon\Carbon::now()->isoFormat('D MMMM Y')}}</td>
+                            <td class="text-right"></td>
                         </tr>
                     </tbody>
-                </table>
+                </table> --}}
 
                 <div style="margin-bottom: 0px">&nbsp;</div>
 
@@ -201,23 +194,78 @@
                 </tr>
             </thead>
             <tbody>
-
-                @for($i = 0; $i < 10; $i++)
-                <tr>
-                    <td>{{$i+1}}</td>
-                    <td>{{ $data_rangkum[0]->suhu[$i]->created_at->format("d-m-Y - H:i") }}</td>
-                    <td>{{ $data_rangkum[0]->suhu[$i]->suhu }} &deg;C</td>
-                    <td>{{ $data_rangkum[0]->detak[$i]->bpm }} bpm</td>
-                    <td>{{ $data_rangkum[0]->detak[$i]->oksigen }} %</td>
-                    <td>{{ $data_rangkum[0]->tekanan_darah[$i]->sistole}}/{{$data_rangkum[0]->tekanan_darah[$i]->diastole }} mmHg</td>
-                </tr>
-
-                @endfor
-
+                @if($total_pengukuran > 10)
+                    @for($i = 0; $i < 10; $i++)
+                    <tr>
+                        <td>{{$i+1}}</td>
+                        <td>{{ $data_rangkum[0]->suhu[$i]->created_at->format("d-m-Y - H:i") }}</td>
+                        <td>{{ $data_rangkum[0]->suhu[$i]->suhu }} &deg;C</td>
+                        <td>{{ $data_rangkum[0]->detak[$i]->bpm }} bpm</td>
+                        <td>{{ $data_rangkum[0]->detak[$i]->oksigen }} %</td>
+                        <td>{{ $data_rangkum[0]->tekanan_darah[$i]->sistole}}/{{$data_rangkum[0]->tekanan_darah[$i]->diastole }} mmHg</td>
+                    </tr>
+                    @endfor
+                @else
+                    @for($i = 0; $i < $total_pengukuran; $i++)
+                    <tr>
+                        <td>{{$i+1}}</td>
+                        <td>{{ $data_rangkum[0]->suhu[$i]->created_at->format("d-m-Y - H:i") }}</td>
+                        <td>{{ $data_rangkum[0]->suhu[$i]->suhu }} &deg;C</td>
+                        <td>{{ $data_rangkum[0]->detak[$i]->bpm }} bpm</td>
+                        <td>{{ $data_rangkum[0]->detak[$i]->oksigen }} %</td>
+                        <td>{{ $data_rangkum[0]->tekanan_darah[$i]->sistole}}/{{$data_rangkum[0]->tekanan_darah[$i]->diastole }} mmHg</td>
+                    </tr>
+                    @endfor
+                @endif
             </tbody>
         </table>
             <div style="margin-bottom: 0px">&nbsp;</div>
         </div>
-
+        <div style="display: flex; justify-content: flex-end;">
+            <div class="col-xs-6"></div>
+            <div class="col-xs-5" style="margin-bottom: 10px">
+                <div class="text-right">
+                    <p>Keterangan</p>
+                    <table class="table table-bordered" style="width: 100%; font-size: 8pt;">
+                        <thead>
+                            <tr style="background-color: #F5F5F5">
+                                <th>Objek</th>
+                                <th>Rendah</th>
+                                <th>Normal</th>
+                                <th>Tinggi</th>
+                            </tr>
+                        </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Suhu Tubuh </td>
+                                    <td> <p style="margin-bottom: 0px"> Kurang dari 36 &deg;C  </p> </td>
+                                    <td> 36 &deg;C - 37.2 &deg;C </td>
+                                    <td> Lebih dari 37.2 &deg;C </td>
+                                </tr>
+                                <tr>
+                                    <td> Detak Jantung </td>
+                                    <td>
+                                        Kurang dari 60 bpm
+                                    </td>
+                                    <td> 60 - 100 bpm </td>
+                                    <td> Lebih dari 100 bpm </td>
+                                </tr>
+                                <tr>
+                                    <td> Saturasi Oksigen </td>
+                                    <td> Kurang dari 95% </td>
+                                    <td> 95 - 100% </td>
+                                    <td> Lebih dari 100% </td>
+                                </tr>
+                                <tr>
+                                    <td> Tekanan Darah </td>
+                                    <td> Kurang dari 90/60 mmHg </td>
+                                    <td> 120-139/60-90 mmHg </td>
+                                    <td> Lebih dari 140/90 mmHg </td>
+                                </tr>
+                            </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
     </body>
     </html>

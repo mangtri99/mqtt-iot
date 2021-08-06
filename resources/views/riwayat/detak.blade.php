@@ -44,78 +44,11 @@
 @endpush
 
 @push('js')
-    {{-- <script>
-        var id_user = $('#user_id').val();
-        var url = "{{url('chart-detak')}}" + "/" + id_user;
-        var bpm = new Array();
-        var oksigen = new Array();
-        var tanggal = new Array();
-        $(document).ready(function(){
-          $.get(url, function(response){
-            response.forEach(function(data){
-                bpm.push(data.bpm);
-                oksigen.push(data.oksigen);
-                var date = new Date(data.created_at);
-                var day = date.getDay();
-                var month = date.getMonth()+1;
-                var year = date.getFullYear();
-                var fullDate = day+"/"+month+"/"+year
-                tanggal.push(fullDate);
-            });
-            var ctx = document.getElementById("chart-detak").getContext('2d');
-                var myChart = new Chart(ctx, {
-                  type: 'line',
-                  data: {
-                      labels:tanggal,
-                      datasets: [{
-                          label: 'Detak Jantung (bpm)',
-                            fill:false,
-                          data: bpm
-                      },{
-                          label: 'Oksigen(%)',
-                            fill:false,
-                          data: oksigen
-                      }]
-                  },
-                  options: {
-                    //  responsive: true,
-				title: {
-					display: true,
-					text: 'Chart'
-				},
-				tooltips: {
-					mode: 'index',
-					intersect: false,
-				},
-				hover: {
-					mode: 'nearest',
-					intersect: true
-				},
-				scales: {
-					xAxes: [{
-						display: true,
-						scaleLabel: {
-							display: true,
-							labelString: 'Tanggal Pemeriksaan'
-						}
-					}],
-					yAxes: [{
-						display: true,
-						scaleLabel: {
-							display: true,
-							labelString: 'Value'
-						}
-					}]
-				}
-                  }
-              });
-          });
-        });
-    </script> --}}
 
-    <script src="{{ asset('argon') }}/vendor/chart.js/dist/Chart.min.js"></script>
-    <script src="{{ asset('argon') }}/vendor/chart.js/dist/Chart.extension.js"></script>
-
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.5.0/dist/chart.min.js"></script>
+    {{-- <script src="{{ asset('argon') }}/vendor/chart.js/dist/Chart.extension.js"></script> --}}
+    {{-- <script src="{{ asset('argon') }}/vendor/chart.js/dist/chartjs-plugin-annotation.min.js"></script> --}}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/chartjs-plugin-annotation/1.0.2/chartjs-plugin-annotation.min.js" integrity="sha512-FuXN8O36qmtA+vRJyRoAxPcThh/1KJJp7WSRnjCpqA+13HYGrSWiyzrCHalCWi42L5qH1jt88lX5wy5JyFxhfQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     {{-- <script src="{{ asset('assets') }}/vendor/jquery/dist/jquery.min.js"></script> --}}
     {{-- <script src="{{ asset('assets') }}/vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script> --}}
 

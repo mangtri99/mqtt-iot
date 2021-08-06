@@ -16,4 +16,16 @@ class Suhu extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    public function getSuhuStatusAttribute()
+    {
+        $suhu = $this->attributes['suhu'];
+
+        if($suhu > 37.5)
+            return 'Tinggi';
+        elseif($suhu < 36.0)
+            return 'Rendah';
+        else
+            return 'Normal';
+    }
 }
