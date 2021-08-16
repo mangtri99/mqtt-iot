@@ -59,3 +59,8 @@ Route::get('/pdf-test', function () {
     }])->get();
     return $last_update;
 });;
+
+Route::get('yes', function () {
+    $data = Suhu::all();
+    return response()->json($data);
+});

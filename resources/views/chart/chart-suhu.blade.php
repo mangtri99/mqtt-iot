@@ -125,42 +125,6 @@
                             },
                         },
                     }
-                    // title: {
-                    //     display: true,
-                    //     text: 'Chart'
-                    // },
-                    // tooltips: {
-                    //     mode: 'index',
-                    //     intersect: false,
-                    // },
-                    // hover: {
-                    //     mode: 'nearest',
-                    //     intersect: true
-                    // },
-                    // scales: {
-                    //     xAxes: [{
-                    //         display: true,
-                    //         scaleLabel: {
-                    //             display: true,
-                    //             labelString: 'Tanggal Pemeriksaan'
-                    //         }
-                    //     }],
-                    //     yAxes: [{
-
-                    //         ticks: {
-                    //             max: 40,
-                    //             min: 35,
-                    //             stepSize: 0.5
-                    //             // suggestedMin: 30,
-                    //         },
-                    //         display: true,
-                    //         scaleLabel: {
-                    //             display: true,
-                    //             labelString: 'Celcius'
-                    //         },
-
-                    //     }]
-                    // }
                   }
               });
           });
