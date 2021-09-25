@@ -140,8 +140,8 @@
                     <tr>
                         <td>1</td>
                         <td>Suhu Tubuh</td>
-                        <td>{{$last_suhu->suhu}}</td>
-                        @if ($last_suhu->suhu > 37)
+                        <td>{{$last_suhu->suhu}} &deg;C</td>
+                        @if ($last_suhu->suhu > 37.5)
                             <td>Tinggi</td>
                         @elseif($last_suhu->suhu < 36)
                             <td>Rendah</td>
@@ -152,13 +152,13 @@
                     <tr>
                         <td>2</td>
                         <td>Detak Jantung</td>
-                        <td>{{$last_detak->bpm}}</td>
+                        <td>{{$last_detak->bpm}} bpm</td>
                         <td>{{$last_detak->detak_status}}</td>
                     </tr>
                     <tr>
                         <td>3</td>
                         <td>Saturasi Oksigen</td>
-                        <td>{{$last_detak->oksigen}}</td>
+                        <td>{{$last_detak->oksigen}} %</td>
                         @if($last_detak->oksigen < 95)
                             <td>Rendah</td>
                         @else
@@ -168,7 +168,7 @@
                     <tr>
                         <td>4</td>
                         <td>Tekanan Darah</td>
-                        <td>{{$last_tekanan->sistole}}/{{$last_tekanan->diastole}}</td>
+                        <td>{{$last_tekanan->sistole}}/{{$last_tekanan->diastole}} mmHg</td>
                         <td>{{$last_tekanan->tekanan_status}}</td>
                     </tr>
                 </tbody>
