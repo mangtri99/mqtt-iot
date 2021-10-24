@@ -28,7 +28,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        if (Auth::check() && Auth::user()->is_admin == '2') {
+        if (Auth::check() && Auth::user()->is_admin == 0) {
             $suhu = Suhu::where('user_id', Auth::user()->id)
                 ->latest()->first();
             $total_pengukuran = Suhu::where('user_id', '=', Auth::user()->id)->count();
@@ -75,7 +75,7 @@ class HomeController extends Controller
                 'total_pengukuran' => $total_pengukuran
             ]);
         }
-        return redirect()->back();
+        return redirect()->route('admin.home');
     }
     public function riwayat_suhu()
     {

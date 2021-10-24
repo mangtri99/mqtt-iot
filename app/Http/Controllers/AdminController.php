@@ -15,15 +15,15 @@ class AdminController extends Controller
      */
     public function index()
     {
-        $user_total = User::where('is_admin', '=', 2)->count();
+        $user_total = User::where('is_admin', '=', 0)->count();
         $jumlah_pengukuran = Suhu::count();
-        $daftar = User::where('is_admin', '=', 2)->get();
+        $daftar = User::where('is_admin', '=', 0)->get();
         return view('admin.home', compact('user_total', 'jumlah_pengukuran', 'daftar'));
     }
 
     public function daftaruser()
     {
-        $daftar = User::where('is_admin', '=', 2)->get();
+        $daftar = User::where('is_admin', '=', 0)->get();
         return view('admin.daftaruser', compact('daftar'));
     }
 

@@ -15,21 +15,6 @@ class PdfController extends Controller
 {
     public function exportSuhu($user)
     {
-        // $data_suhu = Suhu::latest()->limit(10)->get();
-        // $data_detak = Detak::latest()->limit(10)->get();
-        // $data_tekanan = TekananDarah::latest()->limit(10)->get();
-        // $detak = Detak::where('user_id', Auth::user()->id)
-        //     ->latest()->first();
-        // $tekanan = TekananDarah::where('user_id', Auth::user()->id)
-        //     ->latest()->first();
-        // $suhu = Suhu::where('user_id', Auth::user()->id)
-        // ->latest()->first();
-
-        // if ($id) {
-        //     $user = Auth::id();
-        // } else {
-        //     $user = $id;
-        // }
         $user_export = User::find($user);
         // $last_update = User::where('id', '=', $user)->with('detak', 'suhu', 'tekanan_darah')->latest()->first();
         $last_suhu = Suhu::where('user_id', '=', $user)->orderBy('created_at', 'DESC')->first();

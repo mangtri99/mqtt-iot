@@ -18,7 +18,7 @@ class ProfileController extends Controller
      */
     public function edit()
     {
-        if (auth()->user()->is_admin == 2) {
+        if (auth()->user()->is_admin == 0) {
             return view('profile.edit');
         } else {
             return view('admin.profile');
