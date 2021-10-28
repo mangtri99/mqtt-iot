@@ -1,6 +1,9 @@
 @extends('admin.layouts.admin', ['titlePage' => __('Detail User')])
 @section('content')
-<div>
+@php
+    $isTekanan = false;
+@endphp
+<div x-data="{ tab: 'suhu' }">
     <div class="row">
         <div class="col">
             <div class="card">
@@ -73,7 +76,7 @@
             </div>
         </div>
     </div>
-    <div x-data="{ tab: 'suhu' }">
+    <div >
         <ul class="nav nav-tabs">
             <li class="nav-item">
                 <button :class="{ 'active': tab === 'suhu' } " class="nav-link" @click="tab = 'suhu'" >Chart Suhu Tubuh</button>
@@ -85,13 +88,13 @@
                 <button :class="{ 'active': tab === 'tekanan' } " class="nav-link" @click="tab = 'tekanan'" >Chart Tekanan Darah</button>
             </li>
         </ul>
-        <div x-show="tab === 'suhu'">
+        <div x-show="tab === 'suhu'" x-cloak>
             @include('chart.chart-suhu')
         </div>
-        <div x-show="tab === 'detak'">
+        <div x-show="tab === 'detak'" x-cloak>
             @include('chart.chart-detak')
         </div>
-        <div x-show="tab === 'tekanan'">
+        <div x-show="tab === 'tekanan'" x-cloak>
             @include('chart.chart-tekanan')
         </div>
     </div>

@@ -30,7 +30,7 @@
         <div class="row" style="justify-items: center; ">
             <div class="col-xs-1"></div>
             <div class="col-xs-1" style="margin-top: 20px" style="align-items: center">
-            <img style="align-items: center" width="80px" src="https://upload.wikimedia.org/wikipedia/id/2/2d/Logo-unud-baru.png" alt="logo">
+            <img style="align-items: center" width="80px" src="{{asset('Logo-unud-baru.png')}}" alt="logo">
             </div>
             <div class="col-xs-7" style="font-size: 10pt; text-align: center;">
                 <h2 style="font-size: 16pt;">Rumah Sakit Universitas Udayana</h2>

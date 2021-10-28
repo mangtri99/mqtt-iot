@@ -146,66 +146,6 @@
                         },
                     }
                   }
-
-                //   options: {
-                //     responsive: true,
-                //     // plugins: {
-                //     //     autocolors: false,
-                //     //     annotation: {
-                //     //         annotations: {
-                //     //             line1: {
-                //     //             type: 'line',
-                //     //             yMin: 80,
-                //     //             yMax: 80,
-                //     //             borderColor: 'rgb(255, 99, 132)',
-                //     //             borderWidth: 2,
-                //     //             }
-                //     //         }
-                //     //     }
-                //     // },
-                //     legend: {
-                //         display: true,
-                //         align: 'start',
-                //         position: 'bottom',
-                //         labels: {
-                //             boxWidth: 20,
-                //         }
-                //     },
-                //     //  responsive: true,
-                //     title: {
-                //         display: true,
-                //         text: 'Chart'
-                //     },
-                //     tooltips: {
-                //         mode: 'index',
-                //         intersect: false,
-                //     },
-                //     hover: {
-                //         mode: 'nearest',
-                //         intersect: true
-                //     },
-                //     scales: {
-                //         xAxes: [{
-                //             display: true,
-                //             scaleLabel: {
-                //                 display: true,
-                //                 labelString: 'Tanggal Pemeriksaan'
-                //             }
-                //         }],
-                //         yAxes: [{
-                //             display: true,
-                //             scaleLabel: {
-                //                 display: true,
-                //                 labelString: 'Value'
-                //             },
-                //             // ticks: {
-                //             //     min: 40,
-                //             //     max: 150,
-                //             //     stepSize: 30
-                //             // }
-                //         }]
-                //     }
-                //   }
               });
           });
         });
