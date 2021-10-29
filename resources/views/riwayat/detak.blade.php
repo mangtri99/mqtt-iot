@@ -8,29 +8,10 @@
     </div>
  <div class="container-fluid mt--8">
     <div class="row">
-        <div class="col">
+        <div class="col-12">
             <livewire:tabel-detak/>
         </div>
-        {{-- <div class="col">
-            <div class="card bg-white">
-                <div class="card-header bg-transparent">
-                    <div class="row align-items-center">
-                        <div class="col">
-                        <h5 class="text-muted text-uppercase ls-1 mb-2">Grafik Detak Jantung dan Kadar Oksigen</h5>
-                        <h5 class="text-muted mb-0">Riwayat 10 Pengukuran Terakhir</h5>
-                        </div>
-                        <div class="col">
-                        </div>
-                    </div>
-                    </div>
-                <div class="card-body">
-                    <div class="chart">
-                        <!-- Chart wrapper -->
-                        <canvas height="500" width="500" id="chart-detak" class="chart-canvas"></canvas>
-                    </div>
-                </div>
-            </div>
-        </div> --}}
+
         @include('chart.chart-detak')
     </div>
  </div>

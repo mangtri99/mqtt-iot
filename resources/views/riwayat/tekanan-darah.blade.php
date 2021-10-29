@@ -8,7 +8,7 @@
     </div>
  <div class="container-fluid mt--8">
     <div class="row">
-        <div class="col">
+        <div class="col-12">
             <livewire:tabel-tekanan/>
         </div>
         @include('chart.chart-tekanan')

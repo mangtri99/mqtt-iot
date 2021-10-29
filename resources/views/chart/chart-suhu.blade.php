@@ -71,7 +71,7 @@
                                     borderWidth: 4,
                                     label: {
                                         color: '#a88d32',
-                                        content: 'Warning Suhu!',
+                                        content: 'Batas Atas Suhu!',
                                         position: 'center',
                                         enabled: true
                                     }

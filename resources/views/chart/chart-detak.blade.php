@@ -83,19 +83,33 @@
                                         enabled: true
                                     }
                                 },
-                                // line2: {
-                                //     type: 'line',
-                                //     yMin: 95,
-                                //     yMax: 95,
-                                //     borderColor: 'rgb(168, 164, 50)',
-                                //     borderWidth: 4,
-                                //     label: {
-                                //         color: '#a88d32',
-                                //         content: 'Batas bawah SpO2!',
-                                //         position: 'end',
-                                //         enabled: true
-                                //     }
-                                // }
+                                line2: {
+                                    type: 'line',
+                                    yMin: 95,
+                                    yMax: 95,
+                                    borderColor: 'rgb(248, 252, 3)',
+                                    borderWidth: 4,
+                                    label: {
+                                        color: '#a88d32',
+                                        content: 'Batas bawah SPO2!',
+                                        position: 'end',
+                                        enabled: true
+                                    }
+                                },
+                                line3: {
+                                    type: 'line',
+                                    yMin: 60,
+                                    yMax: 60,
+                                    borderColor: 'rgb(255, 99, 132)',
+                                    borderWidth: 4,
+                                    label: {
+                                        color: '#a88d32',
+                                        content: 'Batas bawah BPM!',
+                                        position: 'end',
+                                        enabled: true
+                                    }
+                                },
+
                             }
                         },
                         title: {

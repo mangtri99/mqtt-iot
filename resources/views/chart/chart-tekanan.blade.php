@@ -76,7 +76,7 @@
                                     borderWidth: 4,
                                     label: {
                                         color: '#a88d32',
-                                        content: 'Warning Tekanan Darah!',
+                                        content: 'Batas Atas Tekanan Darah!',
                                         position: 'center',
                                         enabled: true
                                     }
