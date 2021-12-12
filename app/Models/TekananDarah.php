@@ -2,9 +2,10 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class TekananDarah extends Model
 {
@@ -76,5 +77,24 @@ class TekananDarah extends Model
         //     return 'No Data';
         // else
         //     return 'Normal';
+    }
+
+    public function tekanan_notif($userId)
+    {
+        $sistole = $this->attributes['sistole'];
+        $diastole = $this->attributes['diastole'];
+        $tgl_lahir = User::where('id', $userId)->first();
+        $age = Carbon::parse($tgl_lahir->tanggal_lahir)->age;
+        if ($sistole < 95  && $diastole < 60 && $age > 18 && $age <= 40)
+            return 'Rendah';
+        elseif ($sistole > 135 && $diastole > 80 && $age > 18 && $age <= 40)
+            return 'Tinggi';
+
+        elseif ($sistole < 110 && $diastole < 70 && $age > 40 && $age <= 60)
+            return 'Rendah';
+        elseif ($sistole > 145 && $diastole > 90 && $age > 40 && $age <= 60)
+            return 'Tinggi';
+        else
+            return 'Normal';
     }
 }

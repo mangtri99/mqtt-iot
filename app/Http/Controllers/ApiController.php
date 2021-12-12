@@ -40,15 +40,18 @@ class ApiController extends Controller
         $email_user = User::where('id', $request->user_id)->first();
         $data = [
             'date' => now(),
-            'suhu' => $request->suhu,
-            'bpm' => $request->bpm,
-            'spo2' => $request->oksigen,
-            'sistole' => $request->sistole,
-            'diastole' => $request->diastole,
-            'email' => $email_user
+            'suhu' => $suhu->suhu,
+            'status_suhu' => $suhu->suhu_status,
+            'bpm' => $detak->bpm,
+            'status_bpm' => $detak->bpm_notif($request->user_id),
+            'spo2' => $detak->oksigen,
+            'status_spo2' => $detak->oksigen_status,
+            'sistole' => $tekanan->sistole,
+            'diastole' => $tekanan->diastole,
+            'status_tekanan' => $tekanan->tekanan_notif($request->user_id)
         ];
 
-        Mail::to('mangtri93@gmail.com')->send(new NotifyMail($data));
+        Mail::to($email_user)->send(new NotifyMail($data));
 
         return response()->json([
             'status' => 'success'

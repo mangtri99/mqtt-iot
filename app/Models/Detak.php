@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Carbon\Carbon;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Database\Eloquent\Model;
@@ -53,5 +54,17 @@ class Detak extends Model
         //     return 'Normal';
         // else
         //     return 'Tinggi';
+    }
+    public function bpm_notif($userId)
+    {
+        $bpm = $this->attributes['bpm'];
+        $tgl_lahir = User::where('id', $userId)->first();
+        $age = Carbon::parse($tgl_lahir->tanggal_lahir)->age;
+        if($bpm > 100 && $age > 18)
+            return 'Tinggi';
+        elseif($bpm < 60 && $age > 18)
+            return 'Rendah';
+        else
+            return 'Normal';
     }
 }

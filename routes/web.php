@@ -1,5 +1,6 @@
 <?php
 
+use Carbon\Carbon;
 use App\Models\Suhu;
 use App\Models\User;
 use App\Models\Detak;
@@ -27,7 +28,11 @@ use App\Http\Controllers\AdminController;
 
 Auth::routes();
 
-
+Route::get('notif', function(){
+    $tgl_lahir = User::where('id', 9)->first();
+    $age = Carbon::parse($tgl_lahir->tanggal_lahir)->age;
+    return $age;
+});
 
 Route::group(['middleware' => 'auth'], function () {
     Route::get('/', [HomeController::class, 'index'])->name('home');
