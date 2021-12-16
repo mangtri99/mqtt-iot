@@ -75,6 +75,19 @@
                                         position: 'center',
                                         enabled: true
                                     }
+                                },
+                                line2: {
+                                    type: 'line',
+                                    yMin: 36,
+                                    yMax: 36,
+                                    borderColor: 'rgb(212, 252, 30)',
+                                    borderWidth: 4,
+                                    label: {
+                                        color: '#a88d32',
+                                        content: 'Batas Bawah Suhu!',
+                                        position: 'center',
+                                        enabled: true
+                                    }
                                 }
                             }
                         },

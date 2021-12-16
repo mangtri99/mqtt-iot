@@ -78,7 +78,7 @@
                                     borderWidth: 4,
                                     label: {
                                         color: '#a88d32',
-                                        content: 'Batas atas BPM!',
+                                        content: 'Batas atas BPM dan SPO2!',
                                         position: 'end',
                                         enabled: true
                                     }
@@ -100,7 +100,7 @@
                                     type: 'line',
                                     yMin: 60,
                                     yMax: 60,
-                                    borderColor: 'rgb(255, 99, 132)',
+                                    borderColor: 'rgb(15, 122, 42)',
                                     borderWidth: 4,
                                     label: {
                                         color: '#a88d32',

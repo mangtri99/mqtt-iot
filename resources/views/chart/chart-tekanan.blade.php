@@ -72,11 +72,37 @@
                                     type: 'line',
                                     yMin: 140,
                                     yMax: 140,
-                                    borderColor: 'rgb(255, 99, 132)',
+                                    borderColor: 'rgb(166, 20, 20)',
                                     borderWidth: 4,
                                     label: {
                                         color: '#a88d32',
-                                        content: 'Batas Atas Tekanan Darah!',
+                                        content: 'Batas Atas Sistole!',
+                                        position: 'center',
+                                        enabled: true
+                                    }
+                                },
+                                line2: {
+                                    type: 'line',
+                                    yMin: 90,
+                                    yMax: 90,
+                                    borderColor: 'rgb(245, 231, 32)',
+                                    borderWidth: 4,
+                                    label: {
+                                        color: '#a88d32',
+                                        content: 'Batas Bawah Sistole dan Batas Atas Diastole!',
+                                        position: 'center',
+                                        enabled: true
+                                    }
+                                },
+                                line3: {
+                                    type: 'line',
+                                    yMin: 60,
+                                    yMax: 60,
+                                    borderColor: 'rgb(14, 156, 33)',
+                                    borderWidth: 4,
+                                    label: {
+                                        color: '#a88d32',
+                                        content: 'Batas Bawah Diastole!',
                                         position: 'center',
                                         enabled: true
                                     }
@@ -114,7 +140,7 @@
                                     lineHeight: 1.2,
                                 },
                             },
-                            min: 60,
+                            min: 50,
                             max: 150,
                             type: 'linear',
                             display: true,
