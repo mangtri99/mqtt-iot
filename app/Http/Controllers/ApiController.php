@@ -5,10 +5,12 @@ namespace App\Http\Controllers;
 use App\Models\Suhu;
 use App\Models\User;
 use App\Models\Detak;
+use Twilio\Rest\Client;
 use App\Mail\NotifyMail;
 use App\Models\TekananDarah;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
+use App\Notifications\WhatsappNotification;
 
 class ApiController extends Controller
 {
@@ -38,6 +40,7 @@ class ApiController extends Controller
         $tekanan->save();
 
         $email_user = User::where('id', $request->user_id)->first();
+
         $data = [
             'date' => now(),
             'suhu' => $suhu->suhu,
@@ -51,7 +54,9 @@ class ApiController extends Controller
             'status_tekanan' => $tekanan->tekanan_notif($request->user_id)
         ];
 
-        Mail::to($email_user)->send(new NotifyMail($data));
+        Mail::to($email_user->email)->send(new NotifyMail($data));
+        // $request->user()->notify(new WhatsappNotification($data));
+
 
         return response()->json([
             'status' => 'success'

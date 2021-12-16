@@ -88,4 +88,8 @@ class User extends Authenticatable
             return url('assets\img\user_female.png');
         }
     }
+    public function routeNotificationForWhatsApp()
+    {
+        return $this->phone;
+    }
 }
