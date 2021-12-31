@@ -33,7 +33,7 @@
             <img style="align-items: center" width="80px" src="{{asset('Logo-unud-baru.png')}}" alt="logo">
             </div>
             <div class="col-xs-7" style="font-size: 10pt; text-align: center;">
-                <h2 style="font-size: 16pt;">Rumah Sakit Universitas Udayana</h2>
+                <h2 style="font-size: 16pt;">Klinik Udayana</h2>
                 Jl. Raya Kampus Unud, Jimbaran, Bali 80233<br>
                 Telp. 081330092930 Fax. (0361) 21520<br>
                 Website : www.rsunud.com Email : rsunud@unud.ac.id<br>
