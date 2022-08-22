@@ -28,7 +28,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        if (Auth::check() && Auth::user()->is_admin == 0) {
+        if (Auth::check() && Auth::user()->is_admin == 2) {
             $suhu = Suhu::where('user_id', Auth::user()->id)
                 ->latest()->first();
             $total_pengukuran = Suhu::where('user_id', '=', Auth::user()->id)->count();
